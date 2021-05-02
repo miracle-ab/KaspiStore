@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Services.Interf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Infrastructure.Data", "OnlineStore.Infrastructure.Data\OnlineStore.Infrastructure.Data.csproj", "{97F04C86-A815-40EE-87F7-A72D9AE55EC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{2FCD0225-6C53-4B33-A6DB-262B6160F233}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Infrastructure.Business", "OnlineStore.Infrastructure.Business\OnlineStore.Infrastructure.Business.csproj", "{51E3E345-36E8-41B2-8BB5-ADBCF049EF88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{8DD1ACE1-DFBE-48BC-B244-73EB2928A114}"
@@ -49,10 +47,6 @@ Global
 		{97F04C86-A815-40EE-87F7-A72D9AE55EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97F04C86-A815-40EE-87F7-A72D9AE55EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97F04C86-A815-40EE-87F7-A72D9AE55EC1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FCD0225-6C53-4B33-A6DB-262B6160F233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FCD0225-6C53-4B33-A6DB-262B6160F233}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FCD0225-6C53-4B33-A6DB-262B6160F233}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FCD0225-6C53-4B33-A6DB-262B6160F233}.Release|Any CPU.Build.0 = Release|Any CPU
 		{51E3E345-36E8-41B2-8BB5-ADBCF049EF88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{51E3E345-36E8-41B2-8BB5-ADBCF049EF88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51E3E345-36E8-41B2-8BB5-ADBCF049EF88}.Release|Any CPU.ActiveCfg = Release|Any CPU
