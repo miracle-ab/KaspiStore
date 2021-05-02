@@ -1,0 +1,42 @@
+﻿@using OnlineStore.Models.ViewModels;
+@using OnlineStore.Helpers;
+
+@model ProductsViewModel
+
+@{
+    ViewBag.Title = "Products";
+}
+
+@{
+    <div class="col-md-12">
+        <h2 class="mt-md-4">Products</h2>
+    </div>
+}
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @foreach (var item in Model.Products)
+    {
+        <div class="col-md-3" style="margin: 50px 0">
+            <div class="card">
+                @foreach (var photo in item.ProductProductPhotoes)
+                {
+                    var base64 = Convert.ToBase64String(photo.ProductPhoto.LargePhoto);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                    <img src="@imgSrc" class="card-img-top" alt="..." style="background-size: cover">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">@item.ListPrice, @item.Color, @item.ProductNumber</p>
+                    @Html.ActionLink("Checkout", "Details", "Products", new { id = @item.ProductID }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+    </ul>
+</nav>

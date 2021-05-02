@@ -1,0 +1,31 @@
+﻿@using OnlineStore.Models.ViewModels;
+@model ProductViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{
+    <div class="col-md-12">
+        <h2 class="mt-md-4">Product Detail: @Model.Name</h2>
+    </div>
+}
+
+<div class="card mb-12">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="@Model.Photo" class="card-img-top" alt="..." style="background-size: cover">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text">Price: @Model.ListPrice</p>
+                <p class="card-text">Color: @Model.Color</p>
+                <p class="card-text">ProductNumber: @Model.ProductNumber</p>
+                <p class="card-text">Size: @Model.Size @Model.SizeUnitMeasureCode</p>
+                <p class="card-text">@Model.Description</p>
+            </div>
+        </div>
+    </div>
+</div>
+
