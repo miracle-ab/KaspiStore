@@ -3,40 +3,59 @@
 
 @model ProductsViewModel
 
-@{
+@{ 
     ViewBag.Title = "Products";
 }
 
-@{
-    <div class="col-md-12">
-        <h2 class="mt-md-4">Products</h2>
-    </div>
-}
+<header class="header">
 
-<div class="row row-cols-1 row-cols-md-2 g-4">
-    @foreach (var item in Model.Products)
-    {
-        <div class="col-md-3" style="margin: 50px 0">
-            <div class="card">
-                @foreach (var photo in item.ProductProductPhotoes)
+    @Html.Partial("HeaderPartial")
+
+
+    <div class="header__img" style="
+        height: 380px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        ">
+        <div class="header__img__text" style="margin-top: 0px">
+            <h1>Продукция</h1>
+        </div>
+    </div>
+</header>
+
+
+<section class="products" id="products">
+
+        <div class="products__content">
+            @foreach (var item in Model.Products)
+            {
+            <div class="product__content__block">
+                @if (item.Photo != null)
                 {
-                    var base64 = Convert.ToBase64String(photo.ProductPhoto.LargePhoto);
+                    var base64 = Convert.ToBase64String(item.Photo);
                     var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
-                    <img src="@imgSrc" class="card-img-top" alt="..." style="background-size: cover">
+                    <img src="@imgSrc" alt="..." class="product__img">
                 }
-                <div class="card-body">
-                    <h5 class="card-title">@item.Name</h5>
-                    <p class="card-text">@item.ListPrice, @item.Color, @item.ProductNumber</p>
-                    @Html.ActionLink("Checkout", "Details", "Products", new { id = @item.ProductID }, new { @class = "btn btn-primary" })
+
+                <span class="product__content__block__header">@item.Name</span>
+                <p>@item.Description</p>
+
+
+                <div class="product__items__block__price__order">
+                    <span class="product__items__block__price">@item.Price $</span>
+                    @Html.ActionLink("Заказать", "Details", "Products", new { id = @item.ProductID }, new { @class = "product__items__block__order" })
                 </div>
             </div>
+            }
         </div>
-    }
-</div>
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
+    <div class="product__pagination">
+
         @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
-    </ul>
-</nav>
+    </div>
+
+</section>
+

@@ -60,9 +60,11 @@
     <Compile Include="Repositories\Person\PersonPhoneRepository.cs" />
     <Compile Include="Repositories\Person\StateProvinceRepository.cs" />
     <Compile Include="Repositories\Production\ProductCategoryRepository.cs" />
+    <Compile Include="Repositories\Production\ProductDescriptionCultureRepository.cs" />
     <Compile Include="Repositories\Production\ProductDescriptionRepository.cs" />
     <Compile Include="Repositories\Production\ProductInventoryRepository.cs" />
     <Compile Include="Repositories\Production\ProductListPriceHistoryRepository.cs" />
+    <Compile Include="Repositories\Production\ProductModelRepository.cs" />
     <Compile Include="Repositories\Production\ProductPhotoRepository.cs" />
     <Compile Include="Repositories\Production\ProductProductPhotoRepository.cs" />
     <Compile Include="Repositories\Production\ProductRepository.cs" />

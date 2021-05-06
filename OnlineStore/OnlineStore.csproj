@@ -181,6 +181,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\PageInfo.cs" />
+    <Compile Include="Models\ViewModels\ProductList.cs" />
     <Compile Include="Models\ViewModels\ProductsViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,6 +194,23 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\header_background.png" />
+    <Content Include="Content\img\icons\allergic.svg" />
+    <Content Include="Content\img\icons\arrow_down.svg" />
+    <Content Include="Content\img\icons\arrow_right.svg" />
+    <Content Include="Content\img\icons\arrow_right_green.svg" />
+    <Content Include="Content\img\icons\beautiful.svg" />
+    <Content Include="Content\img\icons\children.svg" />
+    <Content Include="Content\img\icons\diabetes.svg" />
+    <Content Include="Content\img\icons\instagram.svg" />
+    <Content Include="Content\img\icons\location.svg" />
+    <Content Include="Content\img\icons\phone.svg" />
+    <Content Include="Content\img\icons\raw_food.svg" />
+    <Content Include="Content\img\icons\sport.svg" />
+    <Content Include="Content\img\icons\vk.svg" />
+    <Content Include="Content\img\icons\whatsapp.svg" />
+    <Content Include="Content\img\products_page_img\arrow_left.svg" />
+    <Content Include="Content\img\products_page_img\arrow_right.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -229,6 +247,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -347,6 +366,10 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Shared\FooterPartial.cshtml" />
+    <Content Include="Views\Shared\ClientRequestPartial.cshtml" />
+    <None Include="Views\Shared\DeliveryPartial.cshtml" />
+    <Content Include="Views\Shared\HeaderPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

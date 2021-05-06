@@ -1,31 +1,88 @@
 ﻿@using OnlineStore.Models.ViewModels;
 @model ProductViewModel
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
-@{
-    <div class="col-md-12">
-        <h2 class="mt-md-4">Product Detail: @Model.Name</h2>
-    </div>
-}
+<header class="header">
 
-<div class="card mb-12">
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img src="@Model.Photo" class="card-img-top" alt="..." style="background-size: cover">
+
+    <div class="mobile__nav__wrapper">
+        <div class="mobile__logo">
+            <a href="#">OnlineStore</a>
         </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">@Model.Name</h5>
-                <p class="card-text">Price: @Model.ListPrice</p>
-                <p class="card-text">Color: @Model.Color</p>
-                <p class="card-text">ProductNumber: @Model.ProductNumber</p>
-                <p class="card-text">Size: @Model.Size @Model.SizeUnitMeasureCode</p>
-                <p class="card-text">@Model.Description</p>
+
+        <div class="mobile__burger__menu">
+            <!-- Burger-Icon -->
+            <div class=" b-container">
+                <div class="b-menu">
+                    <div class="b-bun b-bun--top"></div>
+                    <div class="b-bun b-bun--mid"></div>
+                    <div class="b-bun b-bun--bottom"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mobile__header__content">
+
+            <div class="mobile__header__content__text">
+                <a href="">ГЛАВНАЯ</a>
+                <a href="#services">О НАС</a>
+                <a href="#request__application">ПРОДУКЦИЯ</a>
+                <a href="#advantages">ПРОИЗВОДСТВО</a>
+                <a href="#contacts">ДОСТАВКА</a>
+                <a href="#map">КАРТА</a>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="header__nav__wrapper">
+        <div class="header__nav__text">
+            <a href="#" class="header__nav__text__link">OnlineStore</a>
+
+            <div class="nav__text__links">
+                <a href="" class="header__nav__link">ГЛАВНАЯ</a>
+                <a href="#" class="header__nav__link">О НАС</a>
+                <a href="#" class="header__nav__link">
+                    ПРОДУКЦИЯ
+                </a>
+                <a href="#" class="header__nav__link">ПРОИЗВОДСТВО</a>
+                <a href="#" class="header__nav__link">ДОСТАВКА</a>
+            </div>
+
+            <div class="header__nav__map">
+                <a href="#" class="header__nav__link">КАРТА</a>
             </div>
         </div>
     </div>
-</div>
+
+</header>
+
+<section class="about__product">
+    <div class="about__product__img">
+        <img src="@Model.Photo" alt="product_detail">
+    </div>
+
+    <div class="about__product__text">
+        <span class="about__product__text__header">@Model.Name</span>
+
+        <span class="about__product__text__price">
+            @Model.ListPrice $
+        </span>
+
+        <p class="about__product__text__parag">
+            @Model.Color <br />
+            @Model.ProductNumber <br />
+            @Model.Size @Model.SizeUnitMeasureCode <br />
+            @Model.Description
+        </p>
+
+        <button type="submit" class="about__product__btn" id="contact__request__btn">
+            <a href="#">Купить</a>
+        </button>
+    </div>
+</section>
 

@@ -14,11 +14,10 @@ namespace OnlineStore.Helpers
 
             for (int i = 1; i <= pageInfo.TotalPages; i++)
             {
-                TagBuilder li = new TagBuilder("li");
 
                 TagBuilder tag = new TagBuilder("a");
 
-                li.AddCssClass("page-item");
+                tag.AddCssClass("product__pagination__number");
 
                 tag.MergeAttribute("href", pageUrl(i));
 
@@ -26,14 +25,10 @@ namespace OnlineStore.Helpers
 
                 if (i == pageInfo.PageNumber)
                 {
-                    li.AddCssClass("active");
+                    tag.AddCssClass("pagination__active");
                 }
 
-                tag.AddCssClass("page-link");
-
-                li.InnerHtml = tag.ToString();
-
-                result.Append(li.ToString());  
+                result.Append(tag.ToString());
             }
 
             return MvcHtmlString.Create(result.ToString());

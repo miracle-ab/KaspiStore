@@ -4,9 +4,9 @@ using OnlineStore.Infrastructure.Data.Main;
 
 namespace OnlineStore.Infrastructure.Data
 {
-    public class ProductDescriptionRepository : Repository<ProductDescription>
+    public class ProductModelRepository : Repository<ProductModel>
     {
-        public ProductDescriptionRepository(ItmContext context) : base(context)
+        public ProductModelRepository(ItmContext context) : base(context)
         {
 
         }

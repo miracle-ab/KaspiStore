@@ -11,7 +11,7 @@ using OnlineStore.Infrastructure.Data.Main;
 
 namespace OnlineStore.Infrastructure.Data
 {
-    class ProductProductPhotoRepository : Repository<ProductProductPhoto>
+    public class ProductProductPhotoRepository : Repository<ProductProductPhoto>
     {
         public ProductProductPhotoRepository(ItmContext context) : base(context)
         {

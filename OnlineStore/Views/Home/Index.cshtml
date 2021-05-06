@@ -1,31 +1,63 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@using OnlineStore.Models.ViewModels;
+@using OnlineStore.Helpers;
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@model ProductsViewModel
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+@{ ViewBag.Title = "Products"; }
+
+<header class="header">
+
+    @Html.Partial("HeaderPartial")
+
+    <div class="header__img">
+        <div class="header__img__text">
+            <h1>Товары для всех!</h1>
+            <span>Разнообразный и богатый опыт рамки и место обучения кадров,</span>
+            <span>позволяет оценить значение систем массового участия.</span>
+
+            <div class="header__img__request__btn">
+                <button class="header__img__btn__1"><a href="#">ПРОДУКЦИЯ</a></button>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</header>
+
+<section class="products" id="products">
+    <div class="products__text">
+       <h2>Продукция</h2>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+    <div class="products__content">
+         @foreach (var item in Model.Products)
+         {
+            <div class="product__content__block">
+                @if (item.Photo != null)
+                {
+                    var base64 = Convert.ToBase64String(item.Photo);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                    <img src="@imgSrc" alt="..." class="product__img">
+                }
+                <span class="product__content__block__header">@item.Name</span>
+                <p>@item.Description Color: @item.Color</p>
+
+                <div class="product__items__block__price__order">
+                    <span class="product__items__block__price">@item.Price $</span>
+
+                    @Html.ActionLink("Заказать", "Details", "Products", new { id = @item.ProductID }, new { @class = "product__items__block__order" })
+                </div>
+            </div>
+         }
     </div>
-</div>
+
+
+    <div class="product__button">
+        <button type="submit" class="product__button__btn">
+            <a href="~/Products/Index/">
+                ВСЯ ПРОДУКЦИЯ <img src="~/Content/img/icons/arrow_right.svg" alt="arrow_right">
+            </a>
+        </button>
+    </div>
+
+</section>
+

@@ -22,11 +22,34 @@ namespace OnlineStore.Controllers
         {
             int pageSize = 24;
 
-            var products = unitOfWork.Products.GetList(i => i.ProductInventories.FirstOrDefault(prodInvent => prodInvent.Quantity > 0).Quantity > 0);
+            var products = (from p in unitOfWork.Products.GetList()
+                            join prodInvent in unitOfWork.ProductInventory.GetList() on p.ProductID equals prodInvent.ProductID
+                            join prodProdPh in unitOfWork.ProductProductPhoto.GetList() on p.ProductID equals prodProdPh.ProductID
+                            join prodPh in unitOfWork.ProductPhoto.GetList() on prodProdPh.ProductPhotoID equals prodPh.ProductPhotoID
+                            join prodMod in unitOfWork.ProductModel.GetList() on p.ProductModelID equals prodMod.ProductModelID
+                            join prodDescCul in unitOfWork.ProductDescriptionCulture.GetList() on prodMod.ProductModelID equals prodDescCul.ProductModelID
+                            join prodDesc in unitOfWork.ProductDescription.GetList() on prodDescCul.ProductDescriptionID equals prodDesc.ProductDescriptionID
+                            where prodInvent.Quantity > 0 && prodDescCul.CultureID.Contains("en")
+                            select new ProductList
+                            {
+                                ProductID = p.ProductID,
+                                Name = p.Name,
+                                Color = p.Color,
+                                Description = prodDesc.Description,
+                                Photo = prodPh.LargePhoto,
+                                Price = p.ListPrice
+                            }).Distinct();
 
-            var productsPerPages = products.OrderBy(i => i.ProductID).Skip((page - 1) * pageSize).Take(pageSize);
+            var productsPerPages = products
+                                    .OrderBy(i => i.ProductID)
+                                    .Skip((page - 1) * pageSize)
+                                    .Take(pageSize);
 
-            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = products.Count() };
+            PageInfo pageInfo = new PageInfo { 
+                PageNumber = page, 
+                PageSize = pageSize, 
+                TotalItems = products.Count() 
+            };
 
             return View(new ProductsViewModel { Products = productsPerPages, PageInfo = pageInfo });
         }
@@ -70,6 +93,12 @@ namespace OnlineStore.Controllers
             };
 
             return View(prodView);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            unitOfWork.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
