@@ -1,9 +1,8 @@
 ﻿@using OnlineStore.Models.ViewModels;
-@using OnlineStore.Helpers;
 
-@model ProductsViewModel
+@model IEnumerable<ProductViewModel> 
 
-@{ ViewBag.Title = "Products"; }
+@{ ViewBag.Title = "Home"; }
 
 <header class="header">
 
@@ -28,15 +27,12 @@
     </div>
 
     <div class="products__content">
-         @foreach (var item in Model.Products)
+         @foreach (var item in Model)
          {
             <div class="product__content__block">
                 @if (item.Photo != null)
                 {
-                    var base64 = Convert.ToBase64String(item.Photo);
-                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-
-                    <img src="@imgSrc" alt="..." class="product__img">
+                    <img src="/Products/Image?filename=@item.Photo" />
                 }
                 <span class="product__content__block__header">@item.Name</span>
                 <p>@item.Description Color: @item.Color</p>

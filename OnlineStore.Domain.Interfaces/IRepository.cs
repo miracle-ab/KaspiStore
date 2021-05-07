@@ -12,6 +12,7 @@ namespace OnlineStore.Domain.Interfaces
         TEntity Get(int id);
         void Create(TEntity entity);
         void Update(TEntity entity);
+        IQueryable<TEntity> GetList();
         IQueryable<TEntity> GetList(Expression<Func<TEntity, bool>> predicat);
 
     }

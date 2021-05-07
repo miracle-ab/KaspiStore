@@ -9,7 +9,7 @@ namespace OnlineStore.Models.ViewModels
 {
     public class ProductsViewModel
     {
-        public IQueryable<ProductList> Products { get; set; }
+        public IEnumerable<ProductViewModel> Products { get; set; }
         public PageInfo PageInfo { get; set; }
     }
 }

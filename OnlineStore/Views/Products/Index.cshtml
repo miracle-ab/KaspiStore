@@ -34,10 +34,7 @@
             <div class="product__content__block">
                 @if (item.Photo != null)
                 {
-                    var base64 = Convert.ToBase64String(item.Photo);
-                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-
-                    <img src="@imgSrc" alt="..." class="product__img">
+                    <img src="/Products/Image?filename=@item.Photo" />
                 }
 
                 <span class="product__content__block__header">@item.Name</span>
@@ -53,7 +50,6 @@
         </div>
 
     <div class="product__pagination">
-
         @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
     </div>
 

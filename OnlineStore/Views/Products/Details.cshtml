@@ -1,7 +1,8 @@
 ﻿@using OnlineStore.Models.ViewModels;
+
 @model ProductViewModel
 
-@{ ViewBag.Title = "Details"; }
+@{ ViewBag.Title = "Product Details"; }
 
 <header class="header">
 
@@ -63,19 +64,18 @@
 
 <section class="about__product">
     <div class="about__product__img">
-        <img src="@Model.Photo" alt="product_detail">
+        <img src="/Products/Image?filename=@Model.Photo" />
     </div>
 
     <div class="about__product__text">
         <span class="about__product__text__header">@Model.Name</span>
 
         <span class="about__product__text__price">
-            @Model.ListPrice $
+            @Model.Price $
         </span>
 
         <p class="about__product__text__parag">
             @Model.Color <br />
-            @Model.ProductNumber <br />
             @Model.Size @Model.SizeUnitMeasureCode <br />
             @Model.Description
         </p>

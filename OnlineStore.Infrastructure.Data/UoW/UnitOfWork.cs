@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineStore.Domain.Core.Entities;
+using OnlineStore.Domain.Interfaces;
 using OnlineStore.Infrastructure.Data.Context;
 
 namespace OnlineStore.Infrastructure.Data
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private ItmContext db = new ItmContext();
 
@@ -26,7 +28,7 @@ namespace OnlineStore.Infrastructure.Data
         private ProductDescriptionCultureRepository productDescCultRep;
 
 
-        public ProductRepository Products
+        public IRepository<Product> Products
         {
             get
             {

@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,12 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\PhotoDTO.cs" />
+    <Compile Include="DTO\ProductDTO.cs" />
+    <Compile Include="Infrastructure\ServiceModule.cs" />
+    <Compile Include="Infrastructure\ValidationException.cs" />
+    <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineStore.Domain.Core\OnlineStore.Domain.Core.csproj">
       <Project>{aa8e7300-3685-4375-9eae-584e93ab52a5}</Project>
       <Name>OnlineStore.Domain.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineStore.Domain.Interfaces\OnlineStore.Domain.Interfaces.csproj">
+      <Project>{F1E93EBD-5E11-48D9-83DC-4FAF19CF767F}</Project>
+      <Name>OnlineStore.Domain.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineStore.Infrastructure.Data\OnlineStore.Infrastructure.Data.csproj">
+      <Project>{97f04c86-a815-40ee-87f7-a72d9ae55ec1}</Project>
+      <Name>OnlineStore.Infrastructure.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\OnlineStore.Services.Interfaces\OnlineStore.Services.Interfaces.csproj">
       <Project>{c31823ae-b7c9-40e7-bb07-1db6eed15066}</Project>
@@ -54,8 +74,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTO\" />
-    <Folder Include="Services\" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
