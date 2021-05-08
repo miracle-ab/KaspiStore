@@ -21,9 +21,9 @@ namespace OnlineStore
 
 
             // внедрение зависимостей
-            NinjectModule orderModule = new OrderModule();
+            NinjectModule productModule = new ProductModule();
             NinjectModule serviceModule = new ServiceModule("DefaultConnection");
-            var kernel = new StandardKernel(orderModule, serviceModule);
+            var kernel = new StandardKernel(productModule, serviceModule);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
 
         }

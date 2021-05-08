@@ -7,7 +7,6 @@ using AutoMapper;
 using OnlineStore.Infrastructure.Business.DTO;
 using OnlineStore.Infrastructure.Business.Infrastructure;
 using OnlineStore.Infrastructure.Business.Interfaces;
-using OnlineStore.Infrastructure.Data;
 using OnlineStore.Models.ViewModels;
 
 namespace OnlineStore.Controllers
