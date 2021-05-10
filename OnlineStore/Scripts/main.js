@@ -38,10 +38,13 @@ for (let i = 0; i < allButtonRequestHeader.length; i++) {
     });
 }
 
-document.querySelector('.close').addEventListener("click", function () {
-    document.querySelector('.bg-modal').style.display = "none";
-    body.style.overflow = 'auto';
-});
+if (document.querySelector('.close')) {
+    document.querySelector('.close').addEventListener("click", function () {
+        document.querySelector('.bg-modal').style.display = "none";
+        body.style.overflow = 'auto';
+    });
+}
+
 
 
 // ADD LINK TO EACH PRODUCT BLOCK

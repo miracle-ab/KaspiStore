@@ -1,0 +1,41 @@
+﻿@using OnlineStore.Models.ViewModels;
+
+@model ShippingDetailsViewModel
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+@Html.Partial("HeaderPartial", "Оформить заказ ")
+
+<div style="width: 40%; margin: 90px auto;">
+
+    <p>Пожалуйста введи ваши контактные данные, и мы сразу отправим товар!</p>
+
+    @using (Html.BeginForm())
+    {
+        <h3>Данные</h3>
+        <div class="form-group">
+            <label>Ваше имя:</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+
+        <h3>Адрес доставки</h3>
+        <div class="form-group">
+            <label>Первый адрес:</label>
+            @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Город:</label>
+            @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Страна:</label>
+            @Html.TextBoxFor(x => x.Country, new { @class = "form-control" })
+        </div>
+
+        <div class="text-right">
+            <input class="btn btn-primary" type="submit" value="Обработать заказ" />
+        </div>
+    }
+</div>

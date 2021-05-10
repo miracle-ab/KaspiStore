@@ -184,7 +184,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Binders\CartModelBinder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -195,10 +197,12 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\CartIndexViewModel.cs" />
     <Compile Include="Models\ViewModels\PageInfo.cs" />
     <Compile Include="Models\ViewModels\PhotoViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductsViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductViewModel.cs" />
+    <Compile Include="Models\ViewModels\ShippingDetailsViewModel.cs" />
     <Compile Include="ProductWebService.asmx.cs">
       <DependentUpon>ProductWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -226,6 +230,7 @@
     <Content Include="Content\img\icons\location.svg" />
     <Content Include="Content\img\icons\phone.svg" />
     <Content Include="Content\img\icons\raw_food.svg" />
+    <Content Include="Content\img\icons\shopping-cart.svg" />
     <Content Include="Content\img\icons\sport.svg" />
     <Content Include="Content\img\icons\vk.svg" />
     <Content Include="Content\img\icons\whatsapp.svg" />
@@ -389,6 +394,8 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Shared\FooterPartial.cshtml" />
     <Content Include="Views\Shared\ClientRequestPartial.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
     <None Include="Views\Shared\DeliveryPartial.cshtml" />
     <Content Include="Views\Shared\HeaderPartial.cshtml" />
   </ItemGroup>

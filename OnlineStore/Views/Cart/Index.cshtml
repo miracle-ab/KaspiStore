@@ -1,0 +1,61 @@
+﻿@using OnlineStore.Models.ViewModels;
+@model CartIndexViewModel
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+
+@Html.Partial("HeaderPartial", "Корзина")
+
+<div class="table-responsive table-striped" style=" width: 80%; margin: 150px auto;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Кол-во</th>
+                <th>Продукт</th>
+                <th class="text-right">Цена</th>
+                <th class="text-right">Общая цена</th>
+                <th class="text-right"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.Cart.Lines)
+            {
+                <tr>
+                    <td class="text-center">@line.Quantity</td>
+                    <td class="text-left">@line.Product.Name</td>
+                    <td class="text-right">@line.Product.Price$</td>
+                    <td class="text-right">
+                        @(line.Quantity * line.Product.Price)$
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { @class = "text-right" }))
+                        {
+                            @Html.Hidden("productId", line.Product.ProductID)
+                            @Html.HiddenFor(x => x.ReturnUrl)
+                            <input class="btn btn-sm btn-outline-warning" type="submit" value="Удалить" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Итого:</td>
+                <td class="text-right">
+                    @Model.Cart.ComputeTotalValue()$
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <div class="text-center">
+        <a class="btn btn-sm btn-outline-primary" href="@Model.ReturnUrl">Продолжить покупки</a>
+        @Html.ActionLink("Оформить заказ", "Checkout", null, new { @class = "btn btn-sm btn-primary" })
+    </div>
+
+</div>
+
+

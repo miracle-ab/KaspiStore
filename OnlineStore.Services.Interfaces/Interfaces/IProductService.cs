@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Services.Interfaces
 {
-    public interface IXMLOrder
+    public interface IProductService
     {
-        void CreateXMLOrder();
+        
     }
 }

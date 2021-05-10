@@ -47,12 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\CartLineDTO.cs" />
     <Compile Include="DTO\PhotoDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
+    <Compile Include="DTO\ShippingDetailsDTO.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
+    <Compile Include="Interfaces\ICartService.cs" />
+    <Compile Include="Interfaces\IOrderProcessorService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,10 +72,6 @@
     <ProjectReference Include="..\OnlineStore.Infrastructure.Data\OnlineStore.Infrastructure.Data.csproj">
       <Project>{97f04c86-a815-40ee-87f7-a72d9ae55ec1}</Project>
       <Name>OnlineStore.Infrastructure.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OnlineStore.Services.Interfaces\OnlineStore.Services.Interfaces.csproj">
-      <Project>{c31823ae-b7c9-40e7-bb07-1db6eed15066}</Project>
-      <Name>OnlineStore.Services.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@
     <title>@ViewBag.Title - OnlineStore Application</title>
 
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap")
 
 </head>
 <body>
@@ -15,14 +16,22 @@
 
         @RenderBody()
 
-        @Html.Partial("ClientRequestPartial")
-
-        @Html.Partial("DeliveryPartial")
-
         @Html.Partial("FooterPartial")
 
     </div>
+
+
     @Scripts.Render("~/Scripts/main.js")
+    @Scripts.Render("~/bundles/jquery")
+
+    <script>
+        $(document).ready(function () {
+
+            $('.cart_total').load('@Url.Action("ComputeTotalQuantity", "Cart")')
+
+        });
+    </script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

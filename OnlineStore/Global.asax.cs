@@ -4,7 +4,9 @@ using System.Web.Routing;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Mvc;
+using OnlineStore.Binders;
 using OnlineStore.Infrastructure.Business.Infrastructure;
+using OnlineStore.Infrastructure.Business.Services;
 using OnlineStore.Util;
 
 namespace OnlineStore
@@ -18,13 +20,15 @@ namespace OnlineStore
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-
+            // подключение modelbinder
+            ModelBinders.Binders.Add(typeof(CartService), new CartModelBinder());
 
             // внедрение зависимостей
             NinjectModule productModule = new ProductModule();
             NinjectModule serviceModule = new ServiceModule("DefaultConnection");
             var kernel = new StandardKernel(productModule, serviceModule);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+            kernel.Unbind<ModelValidatorProvider>();
 
         }
     }

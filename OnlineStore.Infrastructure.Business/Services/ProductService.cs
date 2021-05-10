@@ -20,8 +20,17 @@ namespace OnlineStore.Infrastructure.Business.Services
         
         public IEnumerable<ProductDTO> GetProducts()
         {
+
+            var productInventory = unitOfWork.ProductInventory.GetList().GroupBy(p => p.ProductID).
+                  Select(g => new
+                  {
+                      ProductID = g.Key,
+                      Quantity = g.Sum(p => p.Quantity)
+                  }); ;
+
+
             var products = (from p in unitOfWork.Products.GetList()
-                            join prodInvent in unitOfWork.ProductInventory.GetList() on p.ProductID equals prodInvent.ProductID
+                            join prodInvent in productInventory on p.ProductID equals prodInvent.ProductID
                             join prodProdPh in unitOfWork.ProductProductPhoto.GetList() on p.ProductID equals prodProdPh.ProductID
                             join prodPh in unitOfWork.ProductPhoto.GetList() on prodProdPh.ProductPhotoID equals prodPh.ProductPhotoID
                             join prodMod in unitOfWork.ProductModel.GetList() on p.ProductModelID equals prodMod.ProductModelID
@@ -37,9 +46,10 @@ namespace OnlineStore.Infrastructure.Business.Services
                                 Size = p.Size,
                                 SizeUnitMeasureCode = p.SizeUnitMeasureCode,
                                 Description = prodDesc.Description,
-                                Photo = prodPh.LargePhotoFileName
-                            }).Distinct();
-
+                                Photo = prodPh.LargePhotoFileName,
+                                Quantity = prodInvent.Quantity
+                            });
+        
             return products;
         }
 

@@ -1,52 +1,80 @@
-﻿<div class="mobile__nav__wrapper">
-    <div class="mobile__logo">
-        <a href="#">OnlineStore</a>
+﻿@model string
+
+<header class="header">
+    <div class="mobile__nav__wrapper">
+        <div class="mobile__logo">
+            @Html.ActionLink("OnlineStore", "Index", "Home", null, null)
+        </div>
+
+
+        <div class="div__mobile__cart" style="display: flex; align-items: center; justify-content: center;">
+            <div class="header__nav__cart" style="margin-right: 20px;">
+                <a href="~/Cart/Index/">
+                    <img class="cart_icon" src="~/Content/img/icons/shopping-cart.svg">
+                </a>
+                <span class="cart_total">3</span>
+            </div>
+
+            <div class="mobile__burger__menu">
+                <!-- Burger-Icon -->
+                <div class=" b-container">
+                    <div class="b-menu">
+                        <div class="b-bun b-bun--top"></div>
+                        <div class="b-bun b-bun--mid"></div>
+                        <div class="b-bun b-bun--bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mobile__header__content">
+
+            <div class="mobile__header__content__text">
+                @Html.ActionLink("ГЛАВНАЯ", "Index", "Home", null, null)
+                <a href="#services">О НАС</a>
+                <a href="#request__application">ПРОДУКЦИЯ</a>
+                <a href="#advantages">ПРОИЗВОДСТВО</a>
+                <a href="#contacts">ДОСТАВКА</a>
+            </div>
+
+        </div>
+
+
     </div>
 
-    <div class="mobile__burger__menu">
-        <!-- Burger-Icon -->
-        <div class=" b-container">
-            <div class="b-menu">
-                <div class="b-bun b-bun--top"></div>
-                <div class="b-bun b-bun--mid"></div>
-                <div class="b-bun b-bun--bottom"></div>
+    <div class="header__nav__wrapper">
+        <div class="header__nav__text">
+            @Html.ActionLink("OnlineStore", "Index", "Home", null, new { @class = "header__nav__text__link" })
+
+            <div class="nav__text__links">
+                @Html.ActionLink("ГЛАВНАЯ", "Index", "Home", null, new { @class = "header__nav__link" })
+                <a href="#" class="header__nav__link">О НАС</a>
+                <a href="#" class="header__nav__link">
+                    ПРОДУКЦИЯ
+                </a>
+                <a href="#" class="header__nav__link">ПРОИЗВОДСТВО</a>
+                <a href="#" class="header__nav__link">ДОСТАВКА</a>
+            </div>
+
+            <div class="header__nav__cart">
+                <a href="~/Cart/Summary/">
+                    <img class="cart_icon" src="~/Content/img/icons/shopping-cart.svg">
+                </a>
+                <span class="cart_total">0</span>
             </div>
         </div>
     </div>
 
-
-    <div class="mobile__header__content">
-
-        <div class="mobile__header__content__text">
-            <a href="">ГЛАВНАЯ</a>
-            <a href="#services">О НАС</a>
-            <a href="#request__application">ПРОДУКЦИЯ</a>
-            <a href="#advantages">ПРОИЗВОДСТВО</a>
-            <a href="#contacts">ДОСТАВКА</a>
-            <a href="#map">КАРТА</a>
-        </div>
-
-    </div>
-
-
-</div>
-
-<div class="header__nav__wrapper">
-    <div class="header__nav__text">
-        <a href="#" class="header__nav__text__link">OnlineStore</a>
-
-        <div class="nav__text__links">
-            <a href="" class="header__nav__link">ГЛАВНАЯ</a>
-            <a href="#" class="header__nav__link">О НАС</a>
-            <a href="#" class="header__nav__link">
-                ПРОДУКЦИЯ
-            </a>
-            <a href="#" class="header__nav__link">ПРОИЗВОДСТВО</a>
-            <a href="#" class="header__nav__link">ДОСТАВКА</a>
-        </div>
-
-        <div class="header__nav__map">
-            <a href="#" class="header__nav__link">КАРТА</a>
+    <div class="header__img" style="
+        height: 310px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        ">
+        <div class="header__img__text h1__margin__none" style="display: flex; align-items: center; justify-content: center;">
+            <h1 class="header__img__text__h1" style="margin: 0px;">@Model</h1>
         </div>
     </div>
-</div>
+</header>

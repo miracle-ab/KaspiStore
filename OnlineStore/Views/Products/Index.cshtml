@@ -3,51 +3,40 @@
 
 @model ProductsViewModel
 
-@{ 
-    ViewBag.Title = "Products";
-}
-
-<header class="header">
-
-    @Html.Partial("HeaderPartial")
+@{ ViewBag.Title = "Products"; }
 
 
-    <div class="header__img" style="
-        height: 380px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        ">
-        <div class="header__img__text" style="margin-top: 0px">
-            <h1>Продукция</h1>
-        </div>
-    </div>
-</header>
-
+@Html.Partial("HeaderPartial", "Продукция")
 
 <section class="products" id="products">
 
-        <div class="products__content">
-            @foreach (var item in Model.Products)
+    <div class="products__content">
+        @foreach (var item in Model.Products)
+        {
+<div class="product__content__block">
+    @if (item.Photo != null)
+    {
+<img src="/Products/Image?filename=@item.Photo" />                }
+
+    <span class="product__content__block__header">@item.Name</span>
+    <p>@item.Description</p>
+
+
+    <div class="product__items__block__price__order">
+        <span class="product__items__block__price">@item.Price $</span>
+
+        <div class="product__items__block__price__div">
+            @Html.ActionLink("Подробнее", "Details", "Products", new { id = @item.ProductID }, new { @class = "product__items__block__order" })
+
+            @using (Html.BeginForm("AddToCart", "Cart"))
             {
-            <div class="product__content__block">
-                @if (item.Photo != null)
-                {
-                    <img src="/Products/Image?filename=@item.Photo" />
-                }
-
-                <span class="product__content__block__header">@item.Name</span>
-                <p>@item.Description</p>
-
-
-                <div class="product__items__block__price__order">
-                    <span class="product__items__block__price">@item.Price $</span>
-                    @Html.ActionLink("Заказать", "Details", "Products", new { id = @item.ProductID }, new { @class = "product__items__block__order" })
-                </div>
-            </div>
-            }
+                @Html.Hidden("productId", item.ProductID)
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" class="product_cart_btn" value="В корзину" />}
         </div>
+    </div>
+</div>            }
+    </div>
 
     <div class="product__pagination">
         @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
@@ -55,3 +44,6 @@
 
 </section>
 
+@Html.Partial("ClientRequestPartial")
+
+@Html.Partial("DeliveryPartial")

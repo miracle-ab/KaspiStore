@@ -4,63 +4,7 @@
 
 @{ ViewBag.Title = "Product Details"; }
 
-<header class="header">
-
-
-    <div class="mobile__nav__wrapper">
-        <div class="mobile__logo">
-            <a href="#">OnlineStore</a>
-        </div>
-
-        <div class="mobile__burger__menu">
-            <!-- Burger-Icon -->
-            <div class=" b-container">
-                <div class="b-menu">
-                    <div class="b-bun b-bun--top"></div>
-                    <div class="b-bun b-bun--mid"></div>
-                    <div class="b-bun b-bun--bottom"></div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="mobile__header__content">
-
-            <div class="mobile__header__content__text">
-                <a href="">ГЛАВНАЯ</a>
-                <a href="#services">О НАС</a>
-                <a href="#request__application">ПРОДУКЦИЯ</a>
-                <a href="#advantages">ПРОИЗВОДСТВО</a>
-                <a href="#contacts">ДОСТАВКА</a>
-                <a href="#map">КАРТА</a>
-            </div>
-
-        </div>
-
-
-    </div>
-
-    <div class="header__nav__wrapper">
-        <div class="header__nav__text">
-            <a href="#" class="header__nav__text__link">OnlineStore</a>
-
-            <div class="nav__text__links">
-                <a href="" class="header__nav__link">ГЛАВНАЯ</a>
-                <a href="#" class="header__nav__link">О НАС</a>
-                <a href="#" class="header__nav__link">
-                    ПРОДУКЦИЯ
-                </a>
-                <a href="#" class="header__nav__link">ПРОИЗВОДСТВО</a>
-                <a href="#" class="header__nav__link">ДОСТАВКА</a>
-            </div>
-
-            <div class="header__nav__map">
-                <a href="#" class="header__nav__link">КАРТА</a>
-            </div>
-        </div>
-    </div>
-
-</header>
+@Html.Partial("HeaderPartial", @Model.Name)
 
 <section class="about__product">
     <div class="about__product__img">

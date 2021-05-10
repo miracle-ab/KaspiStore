@@ -1,12 +1,74 @@
 ﻿@using OnlineStore.Models.ViewModels;
 
-@model IEnumerable<ProductViewModel> 
+@model IEnumerable<ProductViewModel>
 
 @{ ViewBag.Title = "Home"; }
 
 <header class="header">
 
-    @Html.Partial("HeaderPartial")
+    <div class="mobile__nav__wrapper">
+        <div class="mobile__logo">
+            @Html.ActionLink("OnlineStore", "Index", "Home", null, null)
+        </div>
+
+        <div class="div__mobile__cart" style="display: flex; align-items: center; justify-content: center;">
+            <div class="header__nav__cart" style="margin-right: 20px;">
+                <a href="~/Cart/Index/">
+                    <img class="cart_icon" src="~/Content/img/icons/shopping-cart.svg">
+                </a>
+                <span class="cart_total">3</span>
+            </div>
+
+            <div class="mobile__burger__menu">
+                <!-- Burger-Icon -->
+                <div class=" b-container">
+                    <div class="b-menu">
+                        <div class="b-bun b-bun--top"></div>
+                        <div class="b-bun b-bun--mid"></div>
+                        <div class="b-bun b-bun--bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mobile__header__content">
+
+            <div class="mobile__header__content__text">
+                @Html.ActionLink("ГЛАВНАЯ", "Index", "Home", null, null)
+                <a href="#services">О НАС</a>
+                <a href="#request__application">ПРОДУКЦИЯ</a>
+                <a href="#advantages">ПРОИЗВОДСТВО</a>
+                <a href="#contacts">ДОСТАВКА</a>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="header__nav__wrapper">
+        <div class="header__nav__text">
+            @Html.ActionLink("OnlineStore", "Index", "Home", null, new { @class = "header__nav__text__link" })
+
+            <div class="nav__text__links">
+                @Html.ActionLink("ГЛАВНАЯ", "Index", "Home", null, new { @class = "header__nav__link" })
+                <a href="#" class="header__nav__link">О НАС</a>
+                <a href="#" class="header__nav__link">
+                    ПРОДУКЦИЯ
+                </a>
+                <a href="#" class="header__nav__link">ПРОИЗВОДСТВО</a>
+                <a href="#" class="header__nav__link">ДОСТАВКА</a>
+            </div>
+
+            <div class="header__nav__cart">
+                <a href="~/Cart/Index/">
+                    <img class="cart_icon" src="~/Content/img/icons/shopping-cart.svg">
+                </a>
+                <span class="cart_total">0</span>
+            </div>
+        </div>
+    </div>
 
     <div class="header__img">
         <div class="header__img__text">
@@ -15,7 +77,9 @@
             <span>позволяет оценить значение систем массового участия.</span>
 
             <div class="header__img__request__btn">
-                <button class="header__img__btn__1"><a href="#">ПРОДУКЦИЯ</a></button>
+                <button class="header__img__btn__1">
+                    @Html.ActionLink("ПРОДУКЦИЯ", "Index", "Products", null, null)
+                </button>
             </div>
         </div>
     </div>
@@ -23,27 +87,35 @@
 
 <section class="products" id="products">
     <div class="products__text">
-       <h2>Продукция</h2>
+        <h2>Продукция</h2>
     </div>
 
     <div class="products__content">
-         @foreach (var item in Model)
-         {
-            <div class="product__content__block">
-                @if (item.Photo != null)
-                {
-                    <img src="/Products/Image?filename=@item.Photo" />
-                }
-                <span class="product__content__block__header">@item.Name</span>
-                <p>@item.Description Color: @item.Color</p>
+        @foreach (var item in Model)
+        {
+<div class="product__content__block">
+    @if (item.Photo != null)
+    {
+<img src="/Products/Image?filename=@item.Photo" />                }
+    <span class="product__content__block__header">@item.Name</span>
+    <p>@item.Description Color: @item.Color</p>
 
-                <div class="product__items__block__price__order">
-                    <span class="product__items__block__price">@item.Price $</span>
+    <div class="product__items__block__price__order">
+        <span class="product__items__block__price">@item.Price $</span>
 
-                    @Html.ActionLink("Заказать", "Details", "Products", new { id = @item.ProductID }, new { @class = "product__items__block__order" })
-                </div>
-            </div>
-         }
+        <div class="product__items__block__price__div">
+            @Html.ActionLink("Подробнее", "Details", "Products", new { id = @item.ProductID }, new { @class = "product__items__block__order" })
+
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+        @Html.Hidden("productId", item.ProductID)
+                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                                <input type="submit" class="product_cart_btn" value="В корзину" />}
+        </div>
+
+
+    </div>
+</div>}
     </div>
 
 
@@ -56,4 +128,8 @@
     </div>
 
 </section>
+
+@Html.Partial("ClientRequestPartial")
+
+@Html.Partial("DeliveryPartial")
 
