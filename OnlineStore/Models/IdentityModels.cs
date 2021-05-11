@@ -21,7 +21,7 @@ namespace OnlineStore.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ItmContext", throwIfV1Schema: false)
         {
         }
 

@@ -24,9 +24,13 @@
             @Model.Description
         </p>
 
-        <button type="submit" class="about__product__btn" id="contact__request__btn">
-            <a href="#">Купить</a>
-        </button>
+           @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                @Html.Hidden("productId", Model.ProductID)
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" class="about__product__btn" id="contact__request__btn" value="Купить" />
+            }
+
     </div>
 </section>
 

@@ -1,5 +1,8 @@
 ﻿using OnlineStore.Domain.Core.Entities;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Linq;
 
 namespace OnlineStore.Infrastructure.Data.Context
 {
@@ -565,9 +568,8 @@ namespace OnlineStore.Infrastructure.Data.Context
 
             modelBuilder.Entity<Vendor>()
                 .HasMany(e => e.PurchaseOrderHeaders)
-                .WithRequired(e => e.Vendor)
-                .HasForeignKey(e => e.VendorID)
-                .WillCascadeOnDelete(false);
+                .WithOptional(e => e.Vendor)
+                .HasForeignKey(e => e.VendorID);
 
             modelBuilder.Entity<CountryRegionCurrency>()
                 .Property(e => e.CurrencyCode)

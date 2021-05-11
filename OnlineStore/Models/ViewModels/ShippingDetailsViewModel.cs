@@ -7,6 +7,9 @@ namespace OnlineStore.Models.ViewModels
         [Required(ErrorMessage = "Укажите как вас зовут")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Укажите ваш телефон")]
+        public string Phone { get; set; }
+
         [Required(ErrorMessage = "Вставьте первый адрес доставки")]
         public string Address { get; set; }
 

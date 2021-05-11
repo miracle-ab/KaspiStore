@@ -19,7 +19,10 @@
 <img src="/Products/Image?filename=@item.Photo" />                }
 
     <span class="product__content__block__header">@item.Name</span>
-    <p>@item.Description</p>
+    <p>
+        @item.Description<br />
+        Quantity : @item.Quantity
+    </p>
 
 
     <div class="product__items__block__price__order">
@@ -32,7 +35,8 @@
             {
                 @Html.Hidden("productId", item.ProductID)
                 @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                    <input type="submit" class="product_cart_btn" value="В корзину" />}
+                    <input type="submit" class="product_cart_btn" value="В корзину" />
+            }
         </div>
     </div>
 </div>            }

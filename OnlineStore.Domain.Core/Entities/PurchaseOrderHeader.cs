@@ -24,7 +24,7 @@ namespace OnlineStore.Domain.Core.Entities
 
         public int EmployeeID { get; set; }
 
-        public int VendorID { get; set; }
+        public int? VendorID { get; set; }
 
         public int ShipMethodID { get; set; }
 
