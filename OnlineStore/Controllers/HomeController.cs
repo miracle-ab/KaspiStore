@@ -7,6 +7,7 @@ using AutoMapper;
 using OnlineStore.Models.ViewModels;
 using OnlineStore.Infrastructure.Business.DTO;
 using OnlineStore.Infrastructure.Business.Interfaces;
+using Microsoft.AspNet.Identity;
 
 namespace OnlineStore.Controllers
 {
@@ -24,7 +25,6 @@ namespace OnlineStore.Controllers
             IEnumerable<ProductDTO> productDtos = productService.GetProducts();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProductDTO, ProductViewModel>()).CreateMapper();
             var products = mapper.Map<IEnumerable<ProductDTO>, List<ProductViewModel>>(productDtos).Take(8);
-
 
             return View(products);
         }

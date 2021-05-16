@@ -16,6 +16,7 @@ namespace OnlineStore.Domain.Core.Entities
 
         [Key]
         [Column(Order = 1)]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int PurchaseOrderDetailID { get; set; }
 
         public DateTime DueDate { get; set; }

@@ -2,7 +2,7 @@
 using OnlineStore.Infrastructure.Data.Context;
 using OnlineStore.Infrastructure.Data.Main;
 
-namespace OnlineStore.Infrastructure.Data.Repositories.Purchasing
+namespace OnlineStore.Infrastructure.Data
 {
     public class PurchaseOrderDetailRepository : Repository<PurchaseOrderDetail>
     {

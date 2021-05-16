@@ -6,6 +6,7 @@ namespace OnlineStore.Infrastructure.Business.Interfaces
     public interface IOrderProcessorService
     {
         void ProcessOrder(CartService cart, ShippingDetailsDTO shippingDetails);
+        int GetSalesPerson(string country);
 
     }
 }

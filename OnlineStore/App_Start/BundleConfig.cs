@@ -23,7 +23,8 @@ namespace OnlineStore
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/errorstyles.css"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                       "~/Content/bootstrap.min.css"));

@@ -27,6 +27,14 @@ namespace OnlineStore.Infrastructure.Data
 
         private ProductDescriptionCultureRepository productDescCultRep;
 
+        private SalesPersonRepository salesPersonRep;
+
+        private SalesTerritoryRepository salesTerritoryRep;
+
+        private PurchaseOrderDetailRepository purchaseOrderDetailRep;
+
+        private PurchaseOrderHeaderRepository purchaseOrderHeaderRep;
+
 
         public IRepository<Product> Products
         {
@@ -95,6 +103,46 @@ namespace OnlineStore.Infrastructure.Data
                 if (productDescCultRep == null)
                     productDescCultRep = new ProductDescriptionCultureRepository(db);
                 return productDescCultRep;
+            }
+        }
+
+        public SalesPersonRepository SalesPerson
+        {
+            get
+            {
+                if (salesPersonRep == null)
+                    salesPersonRep = new SalesPersonRepository(db);
+                return salesPersonRep;
+            }
+        }
+
+        public SalesTerritoryRepository SalesTerritory
+        {
+            get
+            {
+                if (salesTerritoryRep == null)
+                    salesTerritoryRep = new SalesTerritoryRepository(db);
+                return salesTerritoryRep;
+            }
+        }
+
+        public PurchaseOrderDetailRepository PurchaseOrderDetail
+        {
+            get
+            {
+                if (purchaseOrderDetailRep == null)
+                    purchaseOrderDetailRep = new PurchaseOrderDetailRepository(db);
+                return purchaseOrderDetailRep;
+            }
+        }
+
+        public PurchaseOrderHeaderRepository PurchaseOrderHeader
+        {
+            get
+            {
+                if (purchaseOrderHeaderRep == null)
+                    purchaseOrderHeaderRep = new PurchaseOrderHeaderRepository(db);
+                return purchaseOrderHeaderRep;
             }
         }
 

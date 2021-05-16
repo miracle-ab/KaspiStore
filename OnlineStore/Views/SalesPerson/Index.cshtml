@@ -1,0 +1,55 @@
+﻿@using OnlineStore.Models.ViewModels;
+@model List<OrderHeaderViewModel>
+
+@{
+    ViewBag.Title = "Заказы";
+}
+
+@Html.Partial("HeaderPartial", "Заказы")
+
+
+<div class="table-responsive table-striped" style="width: 80%;margin: 150px auto;display: flex;flex-direction: column;justify-content: space-between;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Дата заказа</th>
+                <th>Дата отправки</th>
+                <th class="text-right">Статус</th>
+                <th class="text-right">Промежуточная сумма</th>
+                <th class="text-right">Итого</th>
+                <th class="text-right"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td class="text-left">@item.OrderDate</td>
+                @if (item.ShipDate != null)
+                {
+                    <td class="text-left">@item.ShipDate</td>
+                }
+                else
+                {
+                    <td class="text-left">00.00.0000 00:00:00</td>
+                }
+
+                <td class="text-right"> @item.Status</td>
+                <td class="text-right">@item.SubTotal</td>
+                <td class="text-right">@item.TotalDue</td>
+                <td class = "text-right">
+                @*@using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { @class = "text-right" }))
+                {
+                @Html.Hidden("productId", line.Product.ProductID)
+                @Html.HiddenFor(x => x.ReturnUrl)*@
+                <input class="btn btn-sm btn-outline-success" type="submit" value="Подтвердить" />
+                @* } *@
+                </td>
+            </tr>
+            }
+        </tbody>
+        
+    </table>
+
+
+</div>

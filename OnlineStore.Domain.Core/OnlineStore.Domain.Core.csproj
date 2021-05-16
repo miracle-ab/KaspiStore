@@ -50,6 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\AspNetRole.cs" />
+    <Compile Include="Entities\AspNetUser.cs" />
+    <Compile Include="Entities\AspNetUserClaim.cs" />
+    <Compile Include="Entities\AspNetUserLogin.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\AddressType.cs" />
     <Compile Include="Entities\BillOfMaterial.cs" />
@@ -121,6 +125,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

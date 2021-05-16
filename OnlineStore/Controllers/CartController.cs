@@ -2,15 +2,21 @@
 using OnlineStore.Models.ViewModels;
 using OnlineStore.Infrastructure.Business.Interfaces;
 using OnlineStore.Infrastructure.Business.Services;
+using System.Linq;
+using OnlineStore.Infrastructure.Business.DTO;
+using AutoMapper;
 
 namespace OnlineStore.Controllers
 {
     public class CartController : Controller
     {
         IProductService productService;
-        public CartController(IProductService serv)
+        IOrderProcessorService orderProcessorService;
+
+        public CartController(IProductService prodServ, IOrderProcessorService orderPrServ)
         {
-            productService = serv;
+            productService = prodServ;
+            orderProcessorService = orderPrServ;
         }
 
         public ViewResult Index(CartService cart, string returnUrl)
@@ -49,9 +55,33 @@ namespace OnlineStore.Controllers
             return cart.ComputeTotalQuantity();
         }
 
-        public ViewResult Checkout(CartService cart, ShippingDetailsViewModel shippingDetails)
+        public ViewResult Checkout()
         {
             return View(new ShippingDetailsViewModel());
+        }
+
+        [HttpPost]
+        public ViewResult Checkout(CartService cart, ShippingDetailsViewModel shippingDetails)
+        {
+            if (cart.Lines.Count() == 0)
+            {
+                ModelState.AddModelError("", "Извините, ваша корзина пуста!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ShippingDetailsViewModel, ShippingDetailsDTO>()).CreateMapper();
+                var shippingDetailsDTO = mapper.Map<ShippingDetailsViewModel, ShippingDetailsDTO>(shippingDetails);
+
+                orderProcessorService.ProcessOrder(cart, shippingDetailsDTO);
+                cart.Clear();
+
+                return View("Completed");
+            }
+            else
+            {
+                return View(shippingDetails);
+            }
         }
     }
 }

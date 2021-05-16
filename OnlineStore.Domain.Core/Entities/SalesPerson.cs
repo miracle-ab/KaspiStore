@@ -43,6 +43,11 @@ namespace OnlineStore.Domain.Core.Entities
 
         public DateTime ModifiedDate { get; set; }
 
+        [StringLength(128)]
+        public string UserId { get; set; }
+
+        public virtual AspNetUser AspNetUser { get; set; }
+
         public virtual Employee Employee { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

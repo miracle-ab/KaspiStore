@@ -11,7 +11,7 @@ using OnlineStore.Infrastructure.Data.Main;
 
 namespace OnlineStore.Infrastructure.Data
 {
-    class SalesPersonRepository : Repository<SalesPerson>
+    public class SalesPersonRepository : Repository<SalesPerson>
     {
         public SalesPersonRepository(ItmContext context) : base(context)
         {

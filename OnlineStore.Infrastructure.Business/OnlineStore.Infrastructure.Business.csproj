@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\CartLineDTO.cs" />
+    <Compile Include="DTO\OrderHeaderDTO.cs" />
     <Compile Include="DTO\PhotoDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="DTO\ShippingDetailsDTO.cs" />
@@ -56,9 +57,12 @@
     <Compile Include="Interfaces\ICartService.cs" />
     <Compile Include="Interfaces\IOrderProcessorService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="Interfaces\ISalesPersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CartService.cs" />
+    <Compile Include="Services\OrderProcessorService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\SalesPersonService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineStore.Domain.Core\OnlineStore.Domain.Core.csproj">

@@ -11,7 +11,7 @@ using OnlineStore.Infrastructure.Data.Main;
 
 namespace OnlineStore.Infrastructure.Data
 {
-    class SalesTerritoryRepository : Repository<SalesTerritory>
+    public class SalesTerritoryRepository : Repository<SalesTerritory>
     {
         public SalesTerritoryRepository(ItmContext context) : base(context)
         {
