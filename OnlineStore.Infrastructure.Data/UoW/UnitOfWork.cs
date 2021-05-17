@@ -35,6 +35,7 @@ namespace OnlineStore.Infrastructure.Data
 
         private PurchaseOrderHeaderRepository purchaseOrderHeaderRep;
 
+        private AspNetCustomerRepository aspNetCustomerRep;
 
         public IRepository<Product> Products
         {
@@ -146,6 +147,15 @@ namespace OnlineStore.Infrastructure.Data
             }
         }
 
+        public AspNetCustomerRepository AspNetCustomer
+        {
+            get
+            {
+                if (aspNetCustomerRep == null)
+                    aspNetCustomerRep = new AspNetCustomerRepository(db);
+                return aspNetCustomerRep;
+            }
+        }
 
         public void Save()
         {

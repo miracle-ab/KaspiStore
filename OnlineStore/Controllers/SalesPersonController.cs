@@ -32,5 +32,14 @@ namespace OnlineStore.Controllers
 
             return View(orderHeaders);
         }
+
+        [HttpPost]
+        [Authorize(Roles = "manager")]
+        public ActionResult SentForShipment(int purchaseOrderHeaderID, string returnUrl)
+        {
+            salesPersonService.CreateShipmentXML(purchaseOrderHeaderID);
+
+            return RedirectToAction("Index");
+        }
     }
 }

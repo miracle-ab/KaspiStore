@@ -27,7 +27,6 @@ namespace OnlineStore.Infrastructure.Data.Main
         {
             return Entity.Find(id);
         }
-
         public IQueryable<TEntity> GetList()
         {
             return Entity;

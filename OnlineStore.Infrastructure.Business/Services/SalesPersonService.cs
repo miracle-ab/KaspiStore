@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace OnlineStore.Infrastructure.Business.Services
 {
@@ -36,6 +37,48 @@ namespace OnlineStore.Infrastructure.Business.Services
                                };
 
             return orderHeaders;
+        }
+
+        public void CreateShipmentXML(int purchaseOrderHeaderID)
+        {
+            var orderHeader = unitOfWork.PurchaseOrderHeader.Get(purchaseOrderHeaderID);
+
+            var aspNetCustomer = unitOfWork.AspNetCustomer.Get(orderHeader.CustomerID ?? 1);
+
+            XDocument xdoc = new XDocument();
+            XElement xclient= new XElement("client");
+            XElement xorderHeader = new XElement("orderHeader");
+
+            XAttribute xfirstName = new XAttribute("xfirstName", aspNetCustomer.FirstName);
+            XAttribute xmiddleName = new XAttribute("xmiddleName", aspNetCustomer.MiddleName ?? "");
+            XAttribute xlastName = new XAttribute("xlastName", aspNetCustomer.LastName);
+
+            XElement xcity = new XElement("xcity", aspNetCustomer.City);
+            XElement xaddress = new XElement("address", aspNetCustomer.Address);
+            XElement xemail = new XElement("email", aspNetCustomer.Email);
+            XElement xmobilePhone = new XElement("mobilePhone", aspNetCustomer.PhoneNumber);
+
+            xclient.Add(xfirstName, xmiddleName, xlastName, xcity, xaddress, xemail, xmobilePhone);
+            xorderHeader.Add(xclient);
+
+            foreach (var orderDetail in orderHeader.PurchaseOrderDetails)
+            {
+                XElement xorderDetail = new XElement("orderDetail");
+                XAttribute xname = new XAttribute("name", orderDetail.Product.Name);
+                XElement xquantity = new XElement("quantity", orderDetail.OrderQty);
+                XElement xprice = new XElement("price", orderDetail.UnitPrice);
+
+
+                xorderDetail.Add(xname, xquantity, xprice);
+                xorderHeader.Add(xorderDetail);
+            }
+
+            xdoc.Add(xorderHeader);
+            xdoc.Save($"ShipmentOrders\\ShipmentOrder({purchaseOrderHeaderID}).xml");
+
+            orderHeader.Status = 2;
+            unitOfWork.PurchaseOrderHeader.Update(orderHeader);
+            unitOfWork.Save();
         }
     }
 }

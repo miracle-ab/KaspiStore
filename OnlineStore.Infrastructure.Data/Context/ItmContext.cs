@@ -12,6 +12,8 @@ namespace OnlineStore.Infrastructure.Data.Context
             : base("name=ItmContext")
         {
         }
+
+        public virtual DbSet<AspNetCustomer> AspNetCustomers { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -759,6 +761,11 @@ namespace OnlineStore.Infrastructure.Data.Context
                 .HasMany(e => e.Customers)
                 .WithOptional(e => e.Store)
                 .HasForeignKey(e => e.StoreID);
+
+            modelBuilder.Entity<AspNetCustomer>()
+                .HasMany(e => e.PurchaseOrderHeaders)
+                .WithOptional(e => e.AspNetCustomer)
+                .HasForeignKey(e => e.CustomerID);
 
             modelBuilder.Entity<AspNetRole>()
                 .HasMany(e => e.AspNetUsers)

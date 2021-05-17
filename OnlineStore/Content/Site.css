@@ -2110,3 +2110,15 @@ product__items__block__price__div {
 .authorize__link:last-child {
     margin-right: 0px;
 }
+
+.form__order {
+    width: 40%;
+    margin: 90px auto;
+}
+
+@media(max-width: 800px) {
+    .form__order {
+        width: 70%;
+        margin: 90px auto;
+    }
+}

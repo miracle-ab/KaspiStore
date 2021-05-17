@@ -23,6 +23,8 @@ namespace OnlineStore.Infrastructure.Business.Services
         {
             var employeeID = GetSalesPerson(shippingDetails.Country.ToString());
 
+            var customer = CreateCurrentCustomer(shippingDetails);
+
             var subTotal = cart.ComputeTotalValue();
             var taxAmt = (cart.ComputeTotalValue() * 8) / 100;
             var freight = (cart.ComputeTotalValue() * 25) / 1000;
@@ -59,7 +61,10 @@ namespace OnlineStore.Infrastructure.Business.Services
                 orderHeader.PurchaseOrderDetails.Add(orderDetail);
             }
 
-            unitOfWork.PurchaseOrderHeader.Create(orderHeader);
+            customer.PurchaseOrderHeaders.Add(orderHeader);
+
+            unitOfWork.AspNetCustomer.Create(customer);
+
             unitOfWork.Save();
         }
 
@@ -72,6 +77,22 @@ namespace OnlineStore.Infrastructure.Business.Services
                                select sp.BusinessEntityID
                                ).FirstOrDefault();
             return salesPerson;
+        }
+
+        public AspNetCustomer CreateCurrentCustomer(ShippingDetailsDTO shippingDetails)
+        {
+            var customer = new AspNetCustomer()
+            {
+                FirstName = shippingDetails.FirstName,
+                MiddleName = shippingDetails.MiddleName,
+                LastName = shippingDetails.LastName,
+                PhoneNumber = shippingDetails.MobilePhone,
+                Email = shippingDetails.Email,
+                Address = shippingDetails.Address,
+                City = shippingDetails.City
+            };
+
+            return customer;
         }
     }
 }

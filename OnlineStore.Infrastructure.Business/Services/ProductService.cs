@@ -26,7 +26,7 @@ namespace OnlineStore.Infrastructure.Business.Services
                   {
                       ProductID = g.Key,
                       Quantity = g.Sum(p => p.Quantity)
-                  }); ;
+                  });
 
 
             var products = (from p in unitOfWork.Products.GetList()

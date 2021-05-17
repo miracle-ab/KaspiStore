@@ -37,13 +37,14 @@
                 <td class="text-right"> @item.Status</td>
                 <td class="text-right">@item.SubTotal</td>
                 <td class="text-right">@item.TotalDue</td>
-                <td class = "text-right">
-                @*@using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { @class = "text-right" }))
-                {
-                @Html.Hidden("productId", line.Product.ProductID)
-                @Html.HiddenFor(x => x.ReturnUrl)*@
-                <input class="btn btn-sm btn-outline-success" type="submit" value="Подтвердить" />
-                @* } *@
+                <td class="text-right">
+                    @using (Html.BeginForm("SentForShipment", "SalesPerson", FormMethod.Post, new { @class = "text-right" }))
+                    {
+                        @Html.Hidden("purchaseOrderHeaderID", item.PurchaseOrderID)
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                        <input class="btn btn-sm btn-outline-success" type="submit" value="Подтвердить" />
+                    }
+
                 </td>
             </tr>
             }

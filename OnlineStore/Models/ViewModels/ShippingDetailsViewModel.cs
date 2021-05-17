@@ -27,7 +27,7 @@ namespace OnlineStore.Models.ViewModels
         public string MobilePhone { get; set; }
 
         [Required(ErrorMessage = "Укажите почту")]
-        [RegularExpression(@"[A-Za-z0-9._%+-]+[A-Za-z0-9.-]+\.[A-Za-z] {2,4}", ErrorMessage = "Введенная почта не подходит")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
     }
