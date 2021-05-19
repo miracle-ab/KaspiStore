@@ -19,15 +19,15 @@ namespace OnlineStore.Infrastructure.Business.Services
             unitOfWork = uow;
         }
 
-        public void ProcessOrder(CartService cart, ShippingDetailsDTO shippingDetails)
+        public void ProcessOrder(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails)
         {
             var employeeID = GetSalesPerson(shippingDetails.Country.ToString());
 
             var customer = CreateCurrentCustomer(shippingDetails);
 
-            var subTotal = cart.ComputeTotalValue();
-            var taxAmt = (cart.ComputeTotalValue() * 8) / 100;
-            var freight = (cart.ComputeTotalValue() * 25) / 1000;
+            var subTotal = CartTotalValue(cart);
+            var taxAmt = (CartTotalValue(cart) * 8) / 100;
+            var freight = (CartTotalValue(cart) * 25) / 1000;
 
             var orderHeader = new PurchaseOrderHeader() 
             {
@@ -43,7 +43,7 @@ namespace OnlineStore.Infrastructure.Business.Services
                 ModifiedDate = DateTime.Now
             };
 
-            foreach(var item in cart.Lines)
+            foreach(var item in cart)
             {
                 var orderDetail = new PurchaseOrderDetail()
                 {
@@ -93,6 +93,11 @@ namespace OnlineStore.Infrastructure.Business.Services
             };
 
             return customer;
+        }
+   
+        public decimal CartTotalValue(IEnumerable<CartLineDTO> lineCollection)
+        {
+            return lineCollection.Sum(l => l.Product.Price * l.Quantity);
         }
     }
 }

@@ -5,6 +5,7 @@ using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Mvc;
 using OnlineStore.Binders;
+using OnlineStore.CartStoreServiceReference;
 using OnlineStore.Infrastructure.Business.Infrastructure;
 using OnlineStore.Infrastructure.Business.Services;
 using OnlineStore.Util;
@@ -21,7 +22,7 @@ namespace OnlineStore
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // подключение modelbinder
-            ModelBinders.Binders.Add(typeof(CartService), new CartModelBinder());
+            ModelBinders.Binders.Add(typeof(CartSVCClient), new CartModelBinder());
 
             // внедрение зависимостей
             NinjectModule productModule = new ProductModule();

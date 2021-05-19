@@ -1,4 +1,5 @@
-﻿using OnlineStore.Infrastructure.Business.Services;
+﻿using OnlineStore.CartStoreServiceReference;
+using OnlineStore.Infrastructure.Business.Services;
 using System.Web.Mvc;
 
 namespace OnlineStore.Binders
@@ -9,16 +10,16 @@ namespace OnlineStore.Binders
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            CartService cart = null;
+            CartSVCClient cart = null;
 
             if (controllerContext.HttpContext.Session != null)
             {
-                cart = (CartService)controllerContext.HttpContext.Session[sessionKey];
+                cart = (CartSVCClient)controllerContext.HttpContext.Session[sessionKey];
             }
 
             if (cart == null)
             {
-                cart = new CartService();
+                cart = new CartSVCClient();
                 if (controllerContext.HttpContext.Session != null)
                 {
                     controllerContext.HttpContext.Session[sessionKey] = cart;

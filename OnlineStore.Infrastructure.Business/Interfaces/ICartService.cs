@@ -1,5 +1,4 @@
 ﻿using OnlineStore.Infrastructure.Business.DTO;
-using System.Collections.Generic;
 
 namespace OnlineStore.Infrastructure.Business.Interfaces
 {

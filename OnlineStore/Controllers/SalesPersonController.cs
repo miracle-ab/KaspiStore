@@ -4,21 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
 using OnlineStore.Models.ViewModels;
 using OnlineStore.Infrastructure.Business.DTO;
-using OnlineStore.Infrastructure.Business.Interfaces;
-using Microsoft.AspNet.Identity;
-using OnlineStore.Infrastructure.Data;
-using OnlineStore.Domain.Core.Entities;
+using OnlineStore.SalesPersonServiceReference;
 
 namespace OnlineStore.Controllers
 {
     public class SalesPersonController : Controller
     {
-        ISalesPersonService salesPersonService;
-        public SalesPersonController(ISalesPersonService serv)
+        ISalesPersonSVC salesPersonSVC;
+        public SalesPersonController(ISalesPersonSVC serv)
         {
-            salesPersonService = serv;
+            salesPersonSVC = serv;
         }
 
         [Authorize(Roles = "manager")]
@@ -26,7 +24,7 @@ namespace OnlineStore.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            IEnumerable<OrderHeaderDTO> orderHeaderDtos = salesPersonService.GetOrderHeaders(userId);
+            IEnumerable<OrderHeaderDTO> orderHeaderDtos = salesPersonSVC.GetOrderHeaders(userId);
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderHeaderDTO, OrderHeaderViewModel>()).CreateMapper();
             var orderHeaders = mapper.Map<IEnumerable<OrderHeaderDTO>, List<OrderHeaderViewModel>>(orderHeaderDtos);
 
@@ -37,7 +35,7 @@ namespace OnlineStore.Controllers
         [Authorize(Roles = "manager")]
         public ActionResult SentForShipment(int purchaseOrderHeaderID, string returnUrl)
         {
-            salesPersonService.CreateShipmentXML(purchaseOrderHeaderID);
+            salesPersonSVC.CreateShipmentXML(purchaseOrderHeaderID);
 
             return RedirectToAction("Index");
         }

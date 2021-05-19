@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7ee527e2-8f8f-4543-80d6-64b269503588" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:62335/Services/OrderProcessorSVC.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OrderProcessorSVC.xsd" MetadataType="Schema" ID="97e7f228-c0ae-4f44-8277-7e8f5105dc17" SourceId="1" SourceUrl="http://localhost:62335/Services/OrderProcessorSVC.svc?xsd=xsd2" />
+    <MetadataFile FileName="OrderProcessorSVC1.xsd" MetadataType="Schema" ID="3444dc32-372d-4934-a6af-8626e21542ca" SourceId="1" SourceUrl="http://localhost:62335/Services/OrderProcessorSVC.svc?xsd=xsd1" />
+    <MetadataFile FileName="OrderProcessorSVC.disco" MetadataType="Disco" ID="ab8835b3-5292-4e76-8cf2-0673aa7b808e" SourceId="1" SourceUrl="http://localhost:62335/Services/OrderProcessorSVC.svc?disco" />
+    <MetadataFile FileName="OrderProcessorSVC2.xsd" MetadataType="Schema" ID="d938c2fd-af9d-426d-b9bc-630e9fc1edb2" SourceId="1" SourceUrl="http://localhost:62335/Services/OrderProcessorSVC.svc?xsd=xsd0" />
+    <MetadataFile FileName="OrderProcessorSVC.wsdl" MetadataType="Wsdl" ID="00663def-08f0-4624-8a4d-2a8d1c985d08" SourceId="1" SourceUrl="http://localhost:62335/Services/OrderProcessorSVC.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

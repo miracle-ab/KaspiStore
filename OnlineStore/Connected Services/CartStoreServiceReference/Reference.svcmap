@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="37bc2e02-8d2a-44b3-bae1-308f7ca010ad" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:62335/Services/CartSVC.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CartSVC.xsd" MetadataType="Schema" ID="f5677a44-85a1-46da-862d-e7524da15486" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?xsd=xsd0" />
+    <MetadataFile FileName="CartSVC1.xsd" MetadataType="Schema" ID="e5ff34ce-ea1d-4423-bc8a-e28b726856df" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?xsd=xsd1" />
+    <MetadataFile FileName="CartSVC.wsdl" MetadataType="Wsdl" ID="ac6d0054-b931-4875-aea9-babcf7f51661" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?wsdl" />
+    <MetadataFile FileName="CartSVC.disco" MetadataType="Disco" ID="5608afa7-8353-471b-a5a9-d481092ebe49" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?disco" />
+    <MetadataFile FileName="CartSVC2.xsd" MetadataType="Schema" ID="1c99d146-04c0-4728-ae48-5a21779af36e" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

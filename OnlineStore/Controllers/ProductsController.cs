@@ -8,14 +8,14 @@ using OnlineStore.Infrastructure.Business.DTO;
 using OnlineStore.Infrastructure.Business.Infrastructure;
 using OnlineStore.Infrastructure.Business.Interfaces;
 using OnlineStore.Models.ViewModels;
+using OnlineStore.ProductServiceReference;
 
 namespace OnlineStore.Controllers
 {
     public class ProductsController : Controller
     {
-
-        IProductService productService;
-        public ProductsController(IProductService serv)
+        IProductSVC productService;
+        public ProductsController(IProductSVC serv)
         {
             productService = serv;
         }

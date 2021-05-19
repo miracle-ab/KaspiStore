@@ -1,6 +1,5 @@
 ﻿using Ninject.Modules;
-using OnlineStore.Infrastructure.Business.Interfaces;
-using OnlineStore.Infrastructure.Business.Services;
+using OnlineStore.ProductServiceReference;
 
 namespace OnlineStore.Util
 {
@@ -8,7 +7,7 @@ namespace OnlineStore.Util
     {
         public override void Load()
         {
-            Bind<IProductService>().To<ProductService>();
+            Bind<IProductSVC>().To<ProductSVCClient>();
         }
     }
 }

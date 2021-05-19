@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore", "OnlineStore\OnlineStore.csproj", "{E0434E81-B849-4377-A257-A0838032F88F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E38DD853-1A0D-42ED-865E-D681E6E7F36D} = {E38DD853-1A0D-42ED-865E-D681E6E7F36D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Domain.Core", "OnlineStore.Domain.Core\OnlineStore.Domain.Core.csproj", "{AA8E7300-3685-4375-9EAE-584E93AB52A5}"
 EndProject
@@ -16,6 +19,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{15644589-1844-4ED7-8A48-0013D779E5AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B9C6A47C-38C1-4EB3-A154-B1314007F5ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFBackend", "WCFBackend\WCFBackend.csproj", "{E38DD853-1A0D-42ED-865E-D681E6E7F36D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +48,10 @@ Global
 		{51E3E345-36E8-41B2-8BB5-ADBCF049EF88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51E3E345-36E8-41B2-8BB5-ADBCF049EF88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51E3E345-36E8-41B2-8BB5-ADBCF049EF88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E38DD853-1A0D-42ED-865E-D681E6E7F36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E38DD853-1A0D-42ED-865E-D681E6E7F36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E38DD853-1A0D-42ED-865E-D681E6E7F36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E38DD853-1A0D-42ED-865E-D681E6E7F36D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

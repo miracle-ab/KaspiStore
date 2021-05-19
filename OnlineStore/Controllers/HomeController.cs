@@ -8,13 +8,14 @@ using OnlineStore.Models.ViewModels;
 using OnlineStore.Infrastructure.Business.DTO;
 using OnlineStore.Infrastructure.Business.Interfaces;
 using Microsoft.AspNet.Identity;
+using OnlineStore.ProductServiceReference;
 
 namespace OnlineStore.Controllers
 {
     public class HomeController : Controller
     {
-        IProductService productService;
-        public HomeController(IProductService serv)
+        IProductSVC productService;
+        public HomeController(IProductSVC serv)
         {
             productService = serv;
         }

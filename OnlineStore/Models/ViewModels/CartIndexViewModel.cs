@@ -1,10 +1,11 @@
-﻿using OnlineStore.Infrastructure.Business.Services;
+﻿using OnlineStore.CartStoreServiceReference;
+using OnlineStore.Infrastructure.Business.Services;
 
 namespace OnlineStore.Models.ViewModels
 {
     public class CartIndexViewModel
     {
-        public CartService Cart { get; set; }
+        public CartSVCClient Cart { get; set; }
         public string ReturnUrl { get; set; }
     }
 }

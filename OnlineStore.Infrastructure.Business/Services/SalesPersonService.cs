@@ -58,6 +58,8 @@ namespace OnlineStore.Infrastructure.Business.Services
             XElement xemail = new XElement("email", aspNetCustomer.Email);
             XElement xmobilePhone = new XElement("mobilePhone", aspNetCustomer.PhoneNumber);
 
+            XElement xtotalDue = new XElement("totalDue", orderHeader.TotalDue);
+
             xclient.Add(xfirstName, xmiddleName, xlastName, xcity, xaddress, xemail, xmobilePhone);
             xorderHeader.Add(xclient);
 
@@ -74,7 +76,9 @@ namespace OnlineStore.Infrastructure.Business.Services
             }
 
             xdoc.Add(xorderHeader);
-            xdoc.Save($"ShipmentOrders\\ShipmentOrder({purchaseOrderHeaderID}).xml");
+            xorderHeader.Add(xtotalDue);
+
+            xdoc.Save($"C:\\temp\\ShipmentOrder({purchaseOrderHeaderID}).xml");
 
             orderHeader.Status = 2;
             unitOfWork.PurchaseOrderHeader.Update(orderHeader);

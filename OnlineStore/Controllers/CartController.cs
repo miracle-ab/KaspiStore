@@ -5,21 +5,25 @@ using OnlineStore.Infrastructure.Business.Services;
 using System.Linq;
 using OnlineStore.Infrastructure.Business.DTO;
 using AutoMapper;
+using OnlineStore.ProductServiceReference;
+using OnlineStore.OrderProcessorServiceReference;
+using OnlineStore.CartStoreServiceReference;
+using System.Collections.Generic;
 
 namespace OnlineStore.Controllers
 {
     public class CartController : Controller
     {
-        IProductService productService;
-        IOrderProcessorService orderProcessorService;
+        IProductSVC productService;
+        IOrderProcessorSVC orderProcessorService;
 
-        public CartController(IProductService prodServ, IOrderProcessorService orderPrServ)
+        public CartController(IProductSVC prodServ, IOrderProcessorSVC orderProcServ)
         {
             productService = prodServ;
-            orderProcessorService = orderPrServ;
+            orderProcessorService = orderProcServ;
         }
 
-        public ViewResult Index(CartService cart, string returnUrl)
+        public ViewResult Index(CartSVCClient cart, string returnUrl)
         {
             return View(new CartIndexViewModel
             {
@@ -28,7 +32,7 @@ namespace OnlineStore.Controllers
             });
         }
 
-        public RedirectToRouteResult AddToCart(CartService cart, int productId, string returnUrl)
+        public RedirectToRouteResult AddToCart(CartSVCClient cart, int productId, string returnUrl)
         {
             var productDTO = productService.GetProduct(productId);
 
@@ -39,7 +43,7 @@ namespace OnlineStore.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public RedirectToRouteResult RemoveFromCart(CartService cart, int productId, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(CartSVCClient cart, int productId, string returnUrl)
         {
             var productDTO = productService.GetProduct(productId);
 
@@ -50,7 +54,7 @@ namespace OnlineStore.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public int ComputeTotalQuantity(CartService cart)
+        public int ComputeTotalQuantity(CartSVCClient cart)
         {
             return cart.ComputeTotalQuantity();
         }
@@ -61,9 +65,9 @@ namespace OnlineStore.Controllers
         }
 
         [HttpPost]
-        public ViewResult Checkout(CartService cart, ShippingDetailsViewModel shippingDetails)
+        public ViewResult Checkout(CartSVCClient cart, ShippingDetailsViewModel shippingDetails)
         {
-            if (cart.Lines.Count() == 0)
+            if (cart.Lines().Count() == 0)
             {
                 ModelState.AddModelError("", "Извините, ваша корзина пуста!");
             }
@@ -73,7 +77,9 @@ namespace OnlineStore.Controllers
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ShippingDetailsViewModel, ShippingDetailsDTO>()).CreateMapper();
                 var shippingDetailsDTO = mapper.Map<ShippingDetailsViewModel, ShippingDetailsDTO>(shippingDetails);
 
-                orderProcessorService.ProcessOrder(cart, shippingDetailsDTO);
+                CartLineDTO[] cartLines = cart.Lines();
+
+                orderProcessorService.ProcessOrder(cartLines, shippingDetailsDTO);
                 cart.Clear();
 
                 return View("Completed");
