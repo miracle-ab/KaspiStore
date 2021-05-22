@@ -6,7 +6,7 @@
 }
 
 
-@Html.Partial("HeaderPartial", "Корзина")
+@Html.Partial("_HeaderPartial", "Корзина")
 
 <div class="table-responsive table-striped" style="width: 80%;margin: 150px auto;display: flex;flex-direction: column;justify-content: space-between;">
     <table class="table">
@@ -51,9 +51,9 @@
     </table>
 
 
-    <div class="text-center">
+    <div class="text-center" style="margin-top: 80px;">
         <a class="btn btn-sm btn-outline-primary" href="@Model.ReturnUrl">Продолжить покупки</a>
-        @Html.ActionLink("Оформить заказ", "Checkout", null, new { @class = "btn btn-sm btn-primary" })
+        @Html.ActionLink("Оформить заказ", "Checkout", null, new { @class = "btn btn-sm btn-success" })
     </div>
 
 </div>

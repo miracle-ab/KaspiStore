@@ -1,7 +1,5 @@
 ﻿using System.Web.Mvc;
 using OnlineStore.Models.ViewModels;
-using OnlineStore.Infrastructure.Business.Interfaces;
-using OnlineStore.Infrastructure.Business.Services;
 using System.Linq;
 using OnlineStore.Infrastructure.Business.DTO;
 using AutoMapper;

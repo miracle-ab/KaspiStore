@@ -4,7 +4,7 @@
 
 @{ ViewBag.Title = "Product Details"; }
 
-@Html.Partial("HeaderPartial", @Model.Name)
+@Html.Partial("_HeaderPartial", @Model.Name)
 
 <section class="about__product">
     <div class="about__product__img">
@@ -24,13 +24,15 @@
             @Model.Description
         </p>
 
-           @using (Html.BeginForm("AddToCart", "Cart"))
+        @if (Model.Quantity > 0)
+        {
+           using (Html.BeginForm("AddToCart", "Cart"))
             {
                 @Html.Hidden("productId", Model.ProductID)
                 @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
                     <input type="submit" class="about__product__btn" id="contact__request__btn" value="Купить" />
-            }
-
+           }
+        }
     </div>
 </section>
 

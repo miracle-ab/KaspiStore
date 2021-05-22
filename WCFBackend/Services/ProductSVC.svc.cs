@@ -27,6 +27,11 @@ namespace WCFBackend
             return productService.GetProducts();
         }
 
+        public IEnumerable<ProductDTO> GetProductsByCategory(int categoryID)
+        {
+            return productService.GetProductsByCategory(categoryID);
+        }
+
         public PhotoDTO Image(string filename)
         {
             return productService.Image(filename);

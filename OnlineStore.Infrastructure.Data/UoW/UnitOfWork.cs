@@ -37,6 +37,12 @@ namespace OnlineStore.Infrastructure.Data
 
         private AspNetCustomerRepository aspNetCustomerRep;
 
+        private ProductCategoryRepository productCategoryRep;
+
+        private ProductSubCategoryRepository productSubcategoryRep;
+
+
+
         public IRepository<Product> Products
         {
             get
@@ -154,6 +160,26 @@ namespace OnlineStore.Infrastructure.Data
                 if (aspNetCustomerRep == null)
                     aspNetCustomerRep = new AspNetCustomerRepository(db);
                 return aspNetCustomerRep;
+            }
+        }
+
+        public ProductCategoryRepository ProductCategory
+        {
+            get
+            {
+                if (productCategoryRep == null)
+                    productCategoryRep = new ProductCategoryRepository(db);
+                return productCategoryRep;
+            }
+        }
+
+        public ProductSubCategoryRepository ProductSubCategory
+        {
+            get
+            {
+                if (productSubcategoryRep == null)
+                    productSubcategoryRep = new ProductSubCategoryRepository(db);
+                return productSubcategoryRep;
             }
         }
 

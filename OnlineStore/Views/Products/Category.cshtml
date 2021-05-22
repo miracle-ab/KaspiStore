@@ -3,7 +3,7 @@
 
 @model ProductsViewModel
 
-@{ ViewBag.Title = "Products"; }
+@{ ViewBag.Title = "Products by Category"; }
 
 
 @Html.Partial("_HeaderPartial", "Продукция")
@@ -15,8 +15,7 @@
         {
             <div class="product__content__block">
                 @if (item.Photo != null)
-                {
-            <img src="/Products/Image?filename=@item.Photo" />                }
+                {<img src="/Products/Image?filename=@item.Photo" />}
 
                 <span class="product__content__block__header">@item.Name</span>
                 <p>
@@ -31,25 +30,18 @@
                     <div class="product__items__block__price__div">
                         @Html.ActionLink("Подробнее", "Details", "Products", new { id = @item.ProductID }, new { @class = "product__items__block__order" })
 
-                        @if(item.Quantity > 0) 
-                        { 
-                            using (Html.BeginForm("AddToCart", "Cart"))
-                            {
+                        @using (Html.BeginForm("AddToCart", "Cart"))
+                        {
                                 @Html.Hidden("productId", item.ProductID)
                                 @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                                <input type="submit" class="product_cart_btn" value="В корзину" />
-                            }
-
+                               <input type="submit" class="product_cart_btn" value="В корзину" />
                         }
+                        </div>
                     </div>
-                </div>
-            </div>            
-         }
+            </div>      
+        }
     </div>
 
-    <div class="product__pagination">
-        @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
-    </div>
 
 </section>
 

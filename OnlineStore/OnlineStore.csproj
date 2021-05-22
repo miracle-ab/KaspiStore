@@ -258,13 +258,6 @@
     <None Include="Connected Services\OrderProcessorServiceReference\OrderProcessorSVC2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ProductServiceReference\ProductSVC.disco" />
-    <None Include="Connected Services\ProductServiceReference\configuration91.svcinfo" />
-    <None Include="Connected Services\ProductServiceReference\configuration.svcinfo" />
-    <None Include="Connected Services\ProductServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Connected Services\CartStoreServiceReference\CartSVC.disco" />
     <None Include="Connected Services\CartStoreServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\CartStoreServiceReference\configuration.svcinfo" />
@@ -279,10 +272,27 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\ProductServiceReference\ProductSVC.wsdl" />
+    <None Include="Connected Services\ProductServiceReference\ProductSVC.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ProductServiceReference\ProductSVC1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ProductServiceReference\ProductSVC2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\SalesPersonServiceReference\SalesPersonSVC.disco" />
     <None Include="Connected Services\SalesPersonServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\SalesPersonServiceReference\configuration.svcinfo" />
     <None Include="Connected Services\SalesPersonServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ProductServiceReference\ProductSVC.disco" />
+    <None Include="Connected Services\ProductServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\ProductServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\ProductServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -338,18 +348,6 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <None Include="Connected Services\ProductServiceReference\ProductSVC.wsdl" />
-    <None Include="Connected Services\ProductServiceReference\ProductSVC.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ProductServiceReference\ProductSVC1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ProductServiceReference\ProductSVC2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Properties\DataSources\OnlineStore.Infrastructure.Business.DTO.PhotoDTO.datasource" />
-    <Content Include="Properties\DataSources\OnlineStore.Infrastructure.Business.DTO.ProductDTO.datasource" />
     <Content Include="Properties\DataSources\OnlineStore.Infrastructure.Business.DTO.CartLineDTO.datasource" />
     <None Include="Connected Services\SalesPersonServiceReference\SalesPersonSVC.wsdl" />
     <None Include="Connected Services\SalesPersonServiceReference\SalesPersonSVC.xsd">
@@ -362,6 +360,8 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Properties\DataSources\OnlineStore.Infrastructure.Business.DTO.OrderHeaderDTO.datasource" />
+    <Content Include="Properties\DataSources\OnlineStore.Infrastructure.Business.DTO.PhotoDTO.datasource" />
+    <Content Include="Properties\DataSources\OnlineStore.Infrastructure.Business.DTO.ProductDTO.datasource" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -491,14 +491,15 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Shared\FooterPartial.cshtml" />
-    <Content Include="Views\Shared\ClientRequestPartial.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Shared\_ClientRequestPartial.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Cart\Completed.cshtml" />
     <Content Include="Views\SalesPerson\Index.cshtml" />
-    <None Include="Views\Shared\DeliveryPartial.cshtml" />
-    <Content Include="Views\Shared\HeaderPartial.cshtml" />
+    <Content Include="Views\Products\Category.cshtml" />
+    <None Include="Views\Shared\_DeliveryPartial.cshtml" />
+    <Content Include="Views\Shared\_HeaderPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -69,6 +69,7 @@
     <Compile Include="Repositories\Production\ProductPhotoRepository.cs" />
     <Compile Include="Repositories\Production\ProductProductPhotoRepository.cs" />
     <Compile Include="Repositories\Production\ProductRepository.cs" />
+    <Compile Include="Repositories\Production\ProductSubCategory.cs" />
     <Compile Include="Repositories\Purchasing\PurchaseOrderDetailRepository.cs" />
     <Compile Include="Repositories\Purchasing\PurchaseOrderHeaderRepository.cs" />
     <Compile Include="Repositories\Sales\CustomerRepository.cs" />

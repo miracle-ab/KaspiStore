@@ -11,7 +11,7 @@ using OnlineStore.Infrastructure.Data.Main;
 
 namespace OnlineStore.Infrastructure.Data
 {
-    class ProductCategoryRepository : Repository<ProductCategory>
+    public class ProductCategoryRepository : Repository<ProductCategory>
     {
         public ProductCategoryRepository(ItmContext context) : base(context)
         {

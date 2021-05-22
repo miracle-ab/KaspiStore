@@ -43,6 +43,15 @@ namespace OnlineStore.Controllers
             return View(new ProductsViewModel { Products = productsPerPages, PageInfo = pageInfo });
         }
 
+        public ActionResult Category(int categoryID)
+        {
+            IEnumerable<ProductDTO> productDtos = productService.GetProductsByCategory(categoryID);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProductDTO, ProductViewModel>()).CreateMapper();
+            var products = mapper.Map<IEnumerable<ProductDTO>, List<ProductViewModel>>(productDtos);
+
+            return View(new ProductsViewModel { Products = products });
+        }
+
         public ActionResult Details(int id)
         {
             try

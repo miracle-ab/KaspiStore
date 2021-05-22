@@ -3,7 +3,7 @@
     ViewBag.Title = "Управление";
 }
 
-@Html.Partial("HeaderPartial", "Управление")
+@Html.Partial("_HeaderPartial", "Управление")
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div style="width: 40%; margin: 90px auto;">
@@ -86,5 +86,6 @@
     </dl>
 
     <h4>Перейти к подтверждению заказов</h4>
+    <hr />
     <a href="~/SalesPerson/">Перейти к подтверждению заказов</a>
 </div>

@@ -159,7 +159,7 @@ body {
     font-weight: 600;
     font-size: 13px;
     line-height: 25px;
-    padding-right: 85px;
+    padding-right: 45px;
 }
 
 .header__nav__link:hover {
@@ -176,10 +176,10 @@ body {
 .header__img {
     width: 100%;
     height: 650px;
-    background: linear-gradient( rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28) ), url('img/header_background.png') no-repeat;
-    -webkit-background-size: cover;
+    background: linear-gradient( rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.58) ), url('img/header_background.png') no-repeat;
+/*    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
+    -o-background-size: cover;*/
     background-size: cover;
 }
 
@@ -365,9 +365,9 @@ body {
 .desserts {
     width: 100%;
     background: linear-gradient( rgba(35, 98, 87, 0.9), rgba(35, 98, 87, 0.9) ), url('../img/desserts_background.png') no-repeat;
-    -webkit-background-size: cover;
+/*    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
+    -o-background-size: cover;*/
     background-size: cover;
     margin-top: 170px;
     display: flex;
@@ -662,7 +662,7 @@ product__items__block__price__div {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #385f8a;
+    background-color: #212121;
     padding-top: 95px;
 }
 
@@ -2012,24 +2012,24 @@ product__items__block__price__div {
 .product__pagination__number {
     margin-right: 15px;
     padding: 6px 15px;
-    border: 1px solid #385f8a;
+    border: 1px solid #212121;
     border-radius: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
     text-decoration: none;
-    color: #385f8a;
+    color: #212121;
 }
 
 .product__pagination__number:hover {
     text-decoration: none;
-    color: #385f8a;
+    color: #212121;
 }
 
 .pagination__active {
     color: #ffffff !important;
-    background-color: #385f8a;
+    background-color: #212121;
 }
 
 @media (max-width: 500px) {
@@ -2121,4 +2121,15 @@ product__items__block__price__div {
         width: 70%;
         margin: 90px auto;
     }
+}
+
+/* DROPDOWN LINK */
+.dropdown__link {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 25px;
+
+    padding: 0 !important;
 }
