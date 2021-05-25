@@ -9,6 +9,7 @@ namespace OnlineStore.Infrastructure.Business.Interfaces
         ProductDTO GetProduct(int id);
         IEnumerable<ProductDTO> GetProducts();
         IEnumerable<ProductDTO> GetProductsByCategory(int categoryID);
+        IEnumerable<ProductDTO> SearchProducts(string titleProduct);
         PhotoDTO Image(string filename);
         void Dispose();
     }

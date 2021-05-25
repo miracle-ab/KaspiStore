@@ -27,7 +27,7 @@ namespace OnlineStore.Infrastructure.Business.Services
                       Quantity = g.Sum(p => p.Quantity)
                   });
 
-
+            
             var products = (from p in unitOfWork.Products.GetList()
                             join prodInvent in productInventory on p.ProductID equals prodInvent.ProductID
                             join prodProdPh in unitOfWork.ProductProductPhoto.GetList() on p.ProductID equals prodProdPh.ProductID
@@ -48,7 +48,7 @@ namespace OnlineStore.Infrastructure.Business.Services
                                 Photo = prodPh.LargePhotoFileName,
                                 Quantity = prodInvent.Quantity
                             });
-        
+
             return products;
         }
 
@@ -89,6 +89,42 @@ namespace OnlineStore.Infrastructure.Business.Services
             return products;
         }
 
+        public IEnumerable<ProductDTO> SearchProducts(string titleProduct)
+        {
+            var productInventory = unitOfWork.ProductInventory.GetList().GroupBy(p => p.ProductID).
+                 Select(g => new
+                 {
+                     ProductID = g.Key,
+                     Quantity = g.Sum(p => p.Quantity)
+                 });
+
+
+            var products = (from p in unitOfWork.Products.GetList()
+                            join prodInvent in productInventory on p.ProductID equals prodInvent.ProductID
+                            join prodProdPh in unitOfWork.ProductProductPhoto.GetList() on p.ProductID equals prodProdPh.ProductID
+                            join prodPh in unitOfWork.ProductPhoto.GetList() on prodProdPh.ProductPhotoID equals prodPh.ProductPhotoID
+                            join prodMod in unitOfWork.ProductModel.GetList() on p.ProductModelID equals prodMod.ProductModelID
+                            join prodDescCul in unitOfWork.ProductDescriptionCulture.GetList() on prodMod.ProductModelID equals prodDescCul.ProductModelID
+                            join prodDesc in unitOfWork.ProductDescription.GetList() on prodDescCul.ProductDescriptionID equals prodDesc.ProductDescriptionID
+                            where prodInvent.Quantity > 0 && prodDescCul.CultureID.Contains("en")
+                            select new ProductDTO
+                            {
+                                ProductID = p.ProductID,
+                                Name = p.Name,
+                                Color = p.Color,
+                                Price = p.ListPrice,
+                                Size = p.Size,
+                                SizeUnitMeasureCode = p.SizeUnitMeasureCode,
+                                Description = prodDesc.Description,
+                                Photo = prodPh.LargePhotoFileName,
+                                Quantity = prodInvent.Quantity
+                            });
+
+
+            var productsSearch = products.Where(i => i.Name.StartsWith(titleProduct));
+            return productsSearch;
+        }
+
         public ProductDTO GetProduct(int id)
         {
             var product = unitOfWork.Products.Get(id);
@@ -124,7 +160,6 @@ namespace OnlineStore.Infrastructure.Business.Services
                 Photo = photoFileName
             };
         }
-
         public PhotoDTO Image(string filename)
         {
             var img = unitOfWork.ProductPhoto.GetList(i => i.LargePhotoFileName == filename).FirstOrDefault();

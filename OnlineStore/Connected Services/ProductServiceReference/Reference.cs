@@ -33,6 +33,12 @@ namespace OnlineStore.ProductServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductSVC/GetProductsByCategory", ReplyAction="http://tempuri.org/IProductSVC/GetProductsByCategoryResponse")]
         System.Threading.Tasks.Task<OnlineStore.Infrastructure.Business.DTO.ProductDTO[]> GetProductsByCategoryAsync(int categoryID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductSVC/SearchProducts", ReplyAction="http://tempuri.org/IProductSVC/SearchProductsResponse")]
+        OnlineStore.Infrastructure.Business.DTO.ProductDTO[] SearchProducts(string titleProduct);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductSVC/SearchProducts", ReplyAction="http://tempuri.org/IProductSVC/SearchProductsResponse")]
+        System.Threading.Tasks.Task<OnlineStore.Infrastructure.Business.DTO.ProductDTO[]> SearchProductsAsync(string titleProduct);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductSVC/Image", ReplyAction="http://tempuri.org/IProductSVC/ImageResponse")]
         OnlineStore.Infrastructure.Business.DTO.PhotoDTO Image(string filename);
         
@@ -95,6 +101,14 @@ namespace OnlineStore.ProductServiceReference {
         
         public System.Threading.Tasks.Task<OnlineStore.Infrastructure.Business.DTO.ProductDTO[]> GetProductsByCategoryAsync(int categoryID) {
             return base.Channel.GetProductsByCategoryAsync(categoryID);
+        }
+        
+        public OnlineStore.Infrastructure.Business.DTO.ProductDTO[] SearchProducts(string titleProduct) {
+            return base.Channel.SearchProducts(titleProduct);
+        }
+        
+        public System.Threading.Tasks.Task<OnlineStore.Infrastructure.Business.DTO.ProductDTO[]> SearchProductsAsync(string titleProduct) {
+            return base.Channel.SearchProductsAsync(titleProduct);
         }
         
         public OnlineStore.Infrastructure.Business.DTO.PhotoDTO Image(string filename) {

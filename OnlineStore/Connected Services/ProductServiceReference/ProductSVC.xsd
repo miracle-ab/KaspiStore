@@ -41,6 +41,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SearchProducts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="titleProduct" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchProductsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" minOccurs="0" name="SearchProductsResult" nillable="true" type="q4:ArrayOfProductDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Image">
     <xs:complexType>
       <xs:sequence>
@@ -51,7 +65,7 @@
   <xs:element name="ImageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" minOccurs="0" name="ImageResult" nillable="true" type="q4:PhotoDTO" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" minOccurs="0" name="ImageResult" nillable="true" type="q5:PhotoDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

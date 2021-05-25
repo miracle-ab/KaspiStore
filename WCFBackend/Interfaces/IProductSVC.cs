@@ -19,6 +19,9 @@ namespace WCFBackend
         IEnumerable<ProductDTO> GetProductsByCategory(int categoryID);
 
         [OperationContract]
+        IEnumerable<ProductDTO> SearchProducts(string titleProduct);
+
+        [OperationContract]
         PhotoDTO Image(string filename);
 
         [OperationContract]

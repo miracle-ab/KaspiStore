@@ -52,6 +52,15 @@ namespace OnlineStore.Controllers
             return View(new ProductsViewModel { Products = products });
         }
 
+        public ActionResult SearchProduct(string titleProduct)
+        {
+            IEnumerable<ProductDTO> productDtos = productService.SearchProducts(titleProduct);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProductDTO, ProductViewModel>()).CreateMapper();
+            var products = mapper.Map<IEnumerable<ProductDTO>, List<ProductViewModel>>(productDtos);
+
+            return View(new ProductsViewModel { Products = products });
+        }
+
         public ActionResult Details(int id)
         {
             try

@@ -13,9 +13,13 @@ namespace OnlineStore.Infrastructure.Business.Services
     public class SalesPersonService : ISalesPersonService
     {
         UnitOfWork unitOfWork { get; set; }
+
+        MSMQService msmqServ { get; set; }
+
         public SalesPersonService(UnitOfWork uow)
         {
             unitOfWork = uow;
+            msmqServ = new MSMQService();
         }
 
         public IQueryable<OrderHeaderDTO> GetOrderHeaders(string userId)
@@ -49,11 +53,11 @@ namespace OnlineStore.Infrastructure.Business.Services
             XElement xclient= new XElement("client");
             XElement xorderHeader = new XElement("orderHeader");
 
-            XAttribute xfirstName = new XAttribute("xfirstName", aspNetCustomer.FirstName);
-            XAttribute xmiddleName = new XAttribute("xmiddleName", aspNetCustomer.MiddleName ?? "");
-            XAttribute xlastName = new XAttribute("xlastName", aspNetCustomer.LastName);
+            XAttribute xfirstName = new XAttribute("firstName", aspNetCustomer.FirstName);
+            XAttribute xmiddleName = new XAttribute("middleName", aspNetCustomer.MiddleName ?? "");
+            XAttribute xlastName = new XAttribute("lastName", aspNetCustomer.LastName);
 
-            XElement xcity = new XElement("xcity", aspNetCustomer.City);
+            XElement xcity = new XElement("city", aspNetCustomer.City);
             XElement xaddress = new XElement("address", aspNetCustomer.Address);
             XElement xemail = new XElement("email", aspNetCustomer.Email);
             XElement xmobilePhone = new XElement("mobilePhone", aspNetCustomer.PhoneNumber);
@@ -79,14 +83,14 @@ namespace OnlineStore.Infrastructure.Business.Services
                 //var productItem = unitOfWork.ProductInventory.Get(orderDetail.ProductID);
                 //productItem.Quantity -= orderDetail.OrderQty;
                 //unitOfWork.ProductInventory.Update(productItem);
-
-
             }
 
             xdoc.Add(xorderHeader);
             xorderHeader.Add(xtotalDue);
 
-            xdoc.Save($"C:\\temp\\ShipmentOrder({purchaseOrderHeaderID}).xml");
+            msmqServ.SendMessage(xdoc, purchaseOrderHeaderID);
+
+            //xdoc.Save($"C:\\temp\\ShipmentOrder({purchaseOrderHeaderID}).xml");
 
             orderHeader.Status = 2;
             unitOfWork.PurchaseOrderHeader.Update(orderHeader);

@@ -1,0 +1,65 @@
+﻿@using OnlineStore.Models.ViewModels;
+@using OnlineStore.Helpers;
+
+@model ProductsViewModel
+
+
+@{ ViewBag.Title = "SearchProduct"; }
+
+@Html.Partial("_HeaderPartial", "Поиск")
+
+<section class="products" id="products">
+
+    <div class="search__form" style="width: 100%;">
+        @using (Html.BeginForm("SearchProduct", "Products", FormMethod.Get))
+        {
+
+            <div class="form-group mb-12" style="display: flex;">
+                <input id="titleProduct" name="titleProduct" type="text" class="form-control" placeholder="Найти товар..." >
+                <button class="btn btn-outline-primary" type="submit">Поиск</button>
+            </div>
+        }
+
+    </div>
+    
+    <div class="products__content">
+        @foreach (var item in Model.Products)
+        {
+<div class="product__content__block">
+    @if (item.Photo != null)
+    {
+<img src="/Products/Image?filename=@item.Photo" />}
+
+    <span class="product__content__block__header">@item.Name</span>
+    <p>
+        @item.Description<br />
+        Quantity : @item.Quantity
+    </p>
+
+
+    <div class="product__items__block__price__order">
+        <span class="product__items__block__price">@item.Price $</span>
+
+        <div class="product__items__block__price__div">
+            @Html.ActionLink("Подробнее", "Details", "Products", new { id = @item.ProductID }, new { @class = "product__items__block__order" })
+
+            @if (item.Quantity > 0)
+            {
+                using (Html.BeginForm("AddToCart", "Cart"))
+                {
+@Html.Hidden("productId", item.ProductID)
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                                <input type="submit" class="product_cart_btn" value="В корзину" />}
+
+                                        }
+        </div>
+    </div>
+</div>}
+    </div>
+
+
+</section>
+
+@Html.Partial("_ClientRequestPartial")
+
+@Html.Partial("_DeliveryPartial")

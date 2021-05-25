@@ -498,6 +498,7 @@
     <Content Include="Views\Cart\Completed.cshtml" />
     <Content Include="Views\SalesPerson\Index.cshtml" />
     <Content Include="Views\Products\Category.cshtml" />
+    <Content Include="Views\Products\SearchProduct.cshtml" />
     <None Include="Views\Shared\_DeliveryPartial.cshtml" />
     <Content Include="Views\Shared\_HeaderPartial.cshtml" />
   </ItemGroup>

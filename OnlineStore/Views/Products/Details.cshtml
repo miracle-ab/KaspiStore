@@ -24,15 +24,12 @@
             @Model.Description
         </p>
 
-        @if (Model.Quantity > 0)
-        {
-           using (Html.BeginForm("AddToCart", "Cart"))
+          @using (Html.BeginForm("AddToCart", "Cart"))
             {
                 @Html.Hidden("productId", Model.ProductID)
                 @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
                     <input type="submit" class="about__product__btn" id="contact__request__btn" value="Купить" />
            }
-        }
     </div>
 </section>
 
