@@ -59,6 +59,7 @@
     <Compile Include="Repositories\Person\BusinessEntityAddressRepository.cs" />
     <Compile Include="Repositories\Person\BusinessEntityRepository.cs" />
     <Compile Include="Repositories\Person\PersonPhoneRepository.cs" />
+    <Compile Include="Repositories\Person\PersonRepository.cs" />
     <Compile Include="Repositories\Person\StateProvinceRepository.cs" />
     <Compile Include="Repositories\Production\ProductCategoryRepository.cs" />
     <Compile Include="Repositories\Production\ProductDescriptionCultureRepository.cs" />

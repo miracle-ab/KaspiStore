@@ -1,4 +1,5 @@
 ﻿@using OnlineStore.Models.ViewModels;
+
 @model CartIndexViewModel
 
 @{
@@ -26,9 +27,9 @@
                 <tr>
                     <td class="text-center">@line.Quantity</td>
                     <td class="text-center">
-                        @if(line.Product.Photo != null)
+                        @if (line.Product.Photo != null)
                         {
-                        <img border=3 height=50 width=100 src="/Products/Image?filename=@line.Product.Photo" />
+                            <img border=3 height=50 width=100 src="/Products/Image?filename=@line.Product.Photo" />
                         }
                     </td>
                     <td class="text-left">@line.Product.Name</td>
@@ -60,7 +61,17 @@
 
     <div class="text-center" style="margin-top: 80px;">
         <a class="btn btn-sm btn-outline-primary" href="@Model.ReturnUrl">Продолжить покупки</a>
-        @Html.ActionLink("Оформить заказ", "Checkout", null, new { @class = "btn btn-sm btn-success" })
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.ActionLink("Оформить заказ", "CheckoutAuthenticated", null, new { @class = "btn btn-sm btn-success" })
+        }
+        else
+        {
+            @Html.ActionLink("Оформить заказ", "Checkout", null, new { @class = "btn btn-sm btn-success" })
+        }
+
+
     </div>
 
 </div>

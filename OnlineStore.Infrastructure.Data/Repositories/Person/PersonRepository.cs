@@ -4,10 +4,11 @@ using OnlineStore.Infrastructure.Data.Main;
 
 namespace OnlineStore.Infrastructure.Data
 {
-    public class AddressRepository : Repository<Address>
+    public class PersonRepository : Repository<Person>
     {
-        public AddressRepository(ItmContext context) : base(context)
+        public PersonRepository(ItmContext context) : base(context)
         {
+
         }
     }
 }

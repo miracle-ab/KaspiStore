@@ -41,7 +41,13 @@ namespace OnlineStore.Infrastructure.Data
 
         private ProductSubCategoryRepository productSubcategoryRep;
 
+        private PersonRepository personRep;
 
+        private StateProvinceRepository stateProvinceRep;
+
+        private AddressRepository addressRep;
+
+        private CustomerRepository customerRep;
 
         public IRepository<Product> Products
         {
@@ -180,6 +186,36 @@ namespace OnlineStore.Infrastructure.Data
                 if (productSubcategoryRep == null)
                     productSubcategoryRep = new ProductSubCategoryRepository(db);
                 return productSubcategoryRep;
+            }
+        }
+
+        public PersonRepository Person
+        {
+            get
+            {
+                if (personRep == null)
+                    personRep = new PersonRepository(db);
+                return personRep;
+            }
+        }
+
+        public StateProvinceRepository StateProvince
+        {
+            get
+            {
+                if (stateProvinceRep == null)
+                    stateProvinceRep = new StateProvinceRepository(db);
+                return stateProvinceRep;
+            }
+        }
+
+        public AddressRepository Address
+        {
+            get
+            {
+                if (addressRep == null)
+                    addressRep = new AddressRepository(db);
+                return addressRep;
             }
         }
 

@@ -11,7 +11,7 @@ using OnlineStore.Infrastructure.Data.Main;
 
 namespace OnlineStore.Infrastructure.Data
 {
-    class StateProvinceRepository : Repository<StateProvince>
+    public class StateProvinceRepository : Repository<StateProvince>
     {
         public StateProvinceRepository(ItmContext context) : base(context)
         {

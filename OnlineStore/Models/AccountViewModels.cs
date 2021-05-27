@@ -3,6 +3,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OnlineStore.Models
 {
+    public enum Country
+    {
+        US,
+        CA,
+        FR,
+        DE,
+        AU,
+        GB
+    }
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -79,6 +88,33 @@ namespace OnlineStore.Models
         [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Укажите имя")]
+        [Display(Name = "Имя")]
+        public string FirstName { get; set; }
+        [Display(Name = "Отчество")]
+        public string MiddleName { get; set; }
+
+        [Required(ErrorMessage = "Укажите фамилию")]
+        [Display(Name = "Фамилия")]
+        public string LastName { get; set; }
+
+        [Required(ErrorMessage = "Вставьте адрес")]
+        [Display(Name = "Адрес")]
+        public string Address { get; set; }
+
+        [Required(ErrorMessage = "Укажите город")]
+        [Display(Name = "Город")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "Укажите страну")]
+        [Display(Name = "Код страны")]
+        public Country Country { get; set; }
+
+        [Required(ErrorMessage = "Укажите почтовый индекс")]
+        [Display(Name = "Почтовый индекс")]
+        [StringLength(5)]
+        public string PostalCode { get; set; }
     }
 
     public class ResetPasswordViewModel

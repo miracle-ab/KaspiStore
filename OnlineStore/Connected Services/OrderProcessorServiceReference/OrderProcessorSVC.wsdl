@@ -13,16 +13,35 @@
   <wsdl:message name="IOrderProcessorSVC_ProcessOrder_OutputMessage">
     <wsdl:part name="parameters" element="tns:ProcessOrderResponse" />
   </wsdl:message>
+  <wsdl:message name="IOrderProcessorSVC_ProccesOrderAuthenticated_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProccesOrderAuthenticated" />
+  </wsdl:message>
+  <wsdl:message name="IOrderProcessorSVC_ProccesOrderAuthenticated_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProccesOrderAuthenticatedResponse" />
+  </wsdl:message>
   <wsdl:portType name="IOrderProcessorSVC">
     <wsdl:operation name="ProcessOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrderProcessorSVC/ProcessOrder" message="tns:IOrderProcessorSVC_ProcessOrder_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOrderProcessorSVC/ProcessOrderResponse" message="tns:IOrderProcessorSVC_ProcessOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProccesOrderAuthenticated">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderProcessorSVC/ProccesOrderAuthenticated" message="tns:IOrderProcessorSVC_ProccesOrderAuthenticated_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderProcessorSVC/ProccesOrderAuthenticatedResponse" message="tns:IOrderProcessorSVC_ProccesOrderAuthenticated_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IOrderProcessorSVC" type="tns:IOrderProcessorSVC">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="ProcessOrder">
       <soap:operation soapAction="http://tempuri.org/IOrderProcessorSVC/ProcessOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProccesOrderAuthenticated">
+      <soap:operation soapAction="http://tempuri.org/IOrderProcessorSVC/ProccesOrderAuthenticated" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

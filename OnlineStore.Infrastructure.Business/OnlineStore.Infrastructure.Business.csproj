@@ -51,6 +51,7 @@
     <Compile Include="DTO\CartLineDTO.cs" />
     <Compile Include="DTO\CustomerDTO.cs" />
     <Compile Include="DTO\OrderHeaderDTO.cs" />
+    <Compile Include="DTO\PersonDTO.cs" />
     <Compile Include="DTO\PhotoDTO.cs" />
     <Compile Include="DTO\ProdQtySubstractDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
@@ -58,12 +59,14 @@
     <Compile Include="DTO\ShippingDetailsDTO.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\ICartService.cs" />
     <Compile Include="Interfaces\IMSMQService.cs" />
     <Compile Include="Interfaces\IOrderProcessorService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Interfaces\ISalesPersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\MSMQService.cs" />
     <Compile Include="Services\OrderProcessorService.cs" />

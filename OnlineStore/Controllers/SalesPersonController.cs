@@ -31,6 +31,7 @@ namespace OnlineStore.Controllers
             return View(orderHeaders);
         }
 
+        [Authorize(Roles = "manager")]
         public ActionResult AllOrderHeaders()
         {
             IEnumerable<OrderHeaderDTO> allOrderHeaderDtos = salesPersonSVC.GetAllOrderHeaders();

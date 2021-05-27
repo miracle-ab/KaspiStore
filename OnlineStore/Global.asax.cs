@@ -28,8 +28,9 @@ namespace OnlineStore
             NinjectModule productModule = new ProductModule();
             NinjectModule orderProcessorModule = new OrderProcessorModule();
             NinjectModule salesPersonModule = new SalesPersonModule();
+            NinjectModule accountModule = new AccountModule();
             NinjectModule serviceModule = new ServiceModule("ItmContext");
-            var kernel = new StandardKernel(productModule, orderProcessorModule, salesPersonModule, serviceModule);
+            var kernel = new StandardKernel(productModule, orderProcessorModule, salesPersonModule, accountModule, serviceModule);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
             kernel.Unbind<ModelValidatorProvider>();
 

@@ -14,4 +14,18 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="ProccesOrderAuthenticated">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" minOccurs="0" name="cart" nillable="true" type="q3:ArrayOfCartLineDTO" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" minOccurs="0" name="shippingDetails" nillable="true" type="q4:ShippingDetailsDTO" />
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProccesOrderAuthenticatedResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

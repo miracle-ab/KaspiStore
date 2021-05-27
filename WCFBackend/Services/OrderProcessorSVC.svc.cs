@@ -13,6 +13,11 @@ namespace WCFBackend
             orderProcessorService = orderPrServ;
         }
 
+        public void ProccesOrderAuthenticated(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails, string userId)
+        {
+            orderProcessorService.ProccesOrderAuthenticated(cart, shippingDetails, userId);
+        }
+
         public void ProcessOrder(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails)
         {
             orderProcessorService.ProcessOrder(cart, shippingDetails);

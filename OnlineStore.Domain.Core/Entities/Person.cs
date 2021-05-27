@@ -17,13 +17,13 @@ namespace OnlineStore.Domain.Core.Entities
             Customers = new HashSet<Customer>();
             PersonCreditCards = new HashSet<PersonCreditCard>();
             PersonPhones = new HashSet<PersonPhone>();
+            PurchaseOrderHeaders = new HashSet<PurchaseOrderHeader>();
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BusinessEntityID { get; set; }
 
-        [Required]
         [StringLength(2)]
         public string PersonType { get; set; }
 
@@ -58,6 +58,9 @@ namespace OnlineStore.Domain.Core.Entities
 
         public DateTime ModifiedDate { get; set; }
 
+        [StringLength(128)]
+        public string UserID { get; set; }
+
         public virtual Employee Employee { get; set; }
 
         public virtual BusinessEntity BusinessEntity { get; set; }
@@ -78,5 +81,8 @@ namespace OnlineStore.Domain.Core.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonPhone> PersonPhones { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
     }
 }

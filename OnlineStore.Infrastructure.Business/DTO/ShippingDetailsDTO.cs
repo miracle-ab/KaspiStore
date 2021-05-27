@@ -11,6 +11,7 @@ namespace OnlineStore.Infrastructure.Business.DTO
         public Country Country { get; set; }
         public string MobilePhone { get; set; }
         public string Email { get; set; }
+        public string PostalCode { get; set; }
     }
     public enum Country
     {

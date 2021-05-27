@@ -9,5 +9,8 @@ namespace WCFBackend
     {
         [OperationContract]
         void ProcessOrder(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails);
+
+        [OperationContract]
+        void ProccesOrderAuthenticated(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails, string userId);
     }
 }

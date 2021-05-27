@@ -5,10 +5,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using OnlineStore.AccountServiceReference;
+using OnlineStore.Infrastructure.Business.DTO;
 using OnlineStore.Models;
+using OnlineStore.Models.ViewModels;
 
 namespace OnlineStore.Controllers
 {
@@ -17,9 +21,10 @@ namespace OnlineStore.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
-        public AccountController()
+        IAccountSVC accountService;
+        public AccountController(IAccountSVC serv)
         {
+            accountService = serv;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -155,6 +160,23 @@ namespace OnlineStore.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var personVM = new PersonViewModel
+                    {
+                        FirstName = model.FirstName,
+                        MiddleName = model.MiddleName,
+                        LastName = model.LastName,
+                        City = model.City,
+                        Address = model.Address,
+                        PostalCode = model.PostalCode,
+                        Country = (Models.ViewModels.Country)model.Country,
+                        UserId = user.Id
+                    };
+
+                    var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PersonViewModel, PersonDTO>()).CreateMapper();
+                    var personDTO = mapper.Map<PersonViewModel, PersonDTO>(personVM);
+
+                    await accountService.CreatePersonAsync(personDTO);
+
                     await UserManager.AddToRoleAsync(user.Id, "user");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

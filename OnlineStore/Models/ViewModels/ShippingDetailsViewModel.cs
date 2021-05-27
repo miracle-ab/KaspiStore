@@ -26,9 +26,13 @@ namespace OnlineStore.Models.ViewModels
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Введенный телефон не подходит")]
         public string MobilePhone { get; set; }
 
-        [Required(ErrorMessage = "Укажите почту")]
+        [Required(ErrorMessage = "Укажите email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Укажите почтовый индекс")]
+        [StringLength(5)]
+        public string PostalCode { get; set; }
 
     }
 

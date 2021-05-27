@@ -44,10 +44,18 @@ namespace OnlineStore.Domain.Core.Entities
         [Column(TypeName = "money")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal TotalDue { get; set; }
+
         public DateTime ModifiedDate { get; set; }
+
         public int? CustomerID { get; set; }
+
+        public int? PersonID { get; set; }
+
         public virtual AspNetCustomer AspNetCustomer { get; set; }
+
         public virtual Employee Employee { get; set; }
+
+        public virtual Person Person { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }

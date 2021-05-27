@@ -7,6 +7,7 @@ using OnlineStore.ProductServiceReference;
 using OnlineStore.OrderProcessorServiceReference;
 using OnlineStore.CartStoreServiceReference;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
 
 namespace OnlineStore.Controllers
 {
@@ -62,6 +63,12 @@ namespace OnlineStore.Controllers
             return View(new ShippingDetailsViewModel());
         }
 
+        [Authorize(Roles = "user")]
+        public ViewResult CheckoutAuthenticated()
+        {
+            return View(new ShippingDetailsAuthenticatedViewModel());
+        }
+
         [HttpPost]
         public ViewResult Checkout(CartSVCClient cart, ShippingDetailsViewModel shippingDetails)
         {
@@ -78,6 +85,35 @@ namespace OnlineStore.Controllers
                 CartLineDTO[] cartLines = cart.Lines();
 
                 orderProcessorService.ProcessOrder(cartLines, shippingDetailsDTO);
+                cart.Clear();
+
+                return View("Completed");
+            }
+            else
+            {
+                return View(shippingDetails);
+            }
+        }
+
+        [Authorize(Roles = "user")]
+        [HttpPost]
+        public ViewResult CheckoutAuthenticated(CartSVCClient cart, ShippingDetailsAuthenticatedViewModel shippingDetails)
+        {
+            if (cart.Lines().Count() == 0)
+            {
+                ModelState.AddModelError("", "Извините, ваша корзина пуста!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var userId = User.Identity.GetUserId();
+
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ShippingDetailsAuthenticatedViewModel, ShippingDetailsDTO>()).CreateMapper();
+                var shippingDetailsDTO = mapper.Map<ShippingDetailsAuthenticatedViewModel, ShippingDetailsDTO>(shippingDetails);
+
+                CartLineDTO[] cartLines = cart.Lines();
+
+                orderProcessorService.ProccesOrderAuthenticated(cartLines, shippingDetailsDTO, userId);
                 cart.Clear();
 
                 return View("Completed");

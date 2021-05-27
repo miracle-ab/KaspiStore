@@ -91,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Services\AccountSVC.svc" />
     <Content Include="Services\CartSVC.svc" />
     <Content Include="Services\OrderProcessorSVC.svc" />
     <Content Include="Services\ProductSVC.svc" />
@@ -99,9 +100,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Interfaces\IAccountSVC.cs" />
     <Compile Include="Interfaces\ICartSVC.cs" />
     <Compile Include="Interfaces\IOrderProcessorSVC.cs" />
     <Compile Include="Interfaces\ISalesPersonSVC.cs" />
+    <Compile Include="Services\AccountSVC.svc.cs">
+      <DependentUpon>AccountSVC.svc</DependentUpon>
+    </Compile>
     <Compile Include="Services\CartSVC.svc.cs">
       <DependentUpon>CartSVC.svc</DependentUpon>
     </Compile>

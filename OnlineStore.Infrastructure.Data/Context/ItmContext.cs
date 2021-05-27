@@ -88,6 +88,31 @@ namespace OnlineStore.Infrastructure.Data.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AspNetCustomer>()
+                .HasMany(e => e.PurchaseOrderHeaders)
+                .WithOptional(e => e.AspNetCustomer)
+                .HasForeignKey(e => e.CustomerID);
+
+            modelBuilder.Entity<AspNetRole>()
+                .HasMany(e => e.AspNetUsers)
+                .WithMany(e => e.AspNetRoles)
+                .Map(m => m.ToTable("AspNetUserRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
+
+            modelBuilder.Entity<AspNetUser>()
+                .HasMany(e => e.AspNetUserClaims)
+                .WithRequired(e => e.AspNetUser)
+                .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetUser>()
+                .HasMany(e => e.AspNetUserLogins)
+                .WithRequired(e => e.AspNetUser)
+                .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetUser>()
+                .HasMany(e => e.SalesPersons)
+                .WithOptional(e => e.AspNetUser)
+                .HasForeignKey(e => e.UserId);
+
             modelBuilder.Entity<Department>()
                 .HasMany(e => e.EmployeeDepartmentHistories)
                 .WithRequired(e => e.Department)
@@ -239,6 +264,11 @@ namespace OnlineStore.Infrastructure.Data.Context
                 .HasMany(e => e.PersonPhones)
                 .WithRequired(e => e.Person)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.PurchaseOrderHeaders)
+                .WithOptional(e => e.Person)
+                .HasForeignKey(e => e.PersonID);
 
             modelBuilder.Entity<PhoneNumberType>()
                 .HasMany(e => e.PersonPhones)
@@ -761,31 +791,6 @@ namespace OnlineStore.Infrastructure.Data.Context
                 .HasMany(e => e.Customers)
                 .WithOptional(e => e.Store)
                 .HasForeignKey(e => e.StoreID);
-
-            modelBuilder.Entity<AspNetCustomer>()
-                .HasMany(e => e.PurchaseOrderHeaders)
-                .WithOptional(e => e.AspNetCustomer)
-                .HasForeignKey(e => e.CustomerID);
-
-            modelBuilder.Entity<AspNetRole>()
-                .HasMany(e => e.AspNetUsers)
-                .WithMany(e => e.AspNetRoles)
-                .Map(m => m.ToTable("AspNetUserRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
-
-            modelBuilder.Entity<AspNetUser>()
-                .HasMany(e => e.AspNetUserClaims)
-                .WithRequired(e => e.AspNetUser)
-                .HasForeignKey(e => e.UserId);
-
-            modelBuilder.Entity<AspNetUser>()
-                .HasMany(e => e.AspNetUserLogins)
-                .WithRequired(e => e.AspNetUser)
-                .HasForeignKey(e => e.UserId);
-
-            modelBuilder.Entity<AspNetUser>()
-                .HasMany(e => e.SalesPersons)
-                .WithOptional(e => e.AspNetUser)
-                .HasForeignKey(e => e.UserId);
         }
     }
 }

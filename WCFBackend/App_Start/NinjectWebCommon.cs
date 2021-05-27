@@ -66,6 +66,7 @@ namespace WCFBackend.App_Start
             kernel.Bind<IProductService>().To<ProductService>();
             kernel.Bind<IOrderProcessorService>().To<OrderProcessorService>();
             kernel.Bind<ISalesPersonService>().To<SalesPersonService>();
+            kernel.Bind<IAccountService>().To<AccountService>();
         }
     }
 }
