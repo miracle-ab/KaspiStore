@@ -21,9 +21,19 @@ namespace WCFBackend
             salesPersonService.CreateShipmentXML(purchaseOrderHeaderID);
         }
 
+        public SalesProductDTO GetOrderDetails(int purchaseOrderHeaderID)
+        {
+            return salesPersonService.GetOrderDetails(purchaseOrderHeaderID);
+        }
+
         public IQueryable<OrderHeaderDTO> GetOrderHeaders(string userId)
         {
             return salesPersonService.GetOrderHeaders(userId);
+        }
+
+        public IQueryable<OrderHeaderDTO> GetAllOrderHeaders()
+        {
+            return salesPersonService.GetAllOrderHeaders();
         }
     }
 }

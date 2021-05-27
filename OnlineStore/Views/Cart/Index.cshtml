@@ -13,6 +13,7 @@
         <thead>
             <tr>
                 <th>Кол-во</th>
+                <th>Изображение</th>
                 <th>Продукт</th>
                 <th class="text-right">Цена</th>
                 <th class="text-right">Общая цена</th>
@@ -24,6 +25,12 @@
             {
                 <tr>
                     <td class="text-center">@line.Quantity</td>
+                    <td class="text-center">
+                        @if(line.Product.Photo != null)
+                        {
+                        <img border=3 height=50 width=100 src="/Products/Image?filename=@line.Product.Photo" />
+                        }
+                    </td>
                     <td class="text-left">@line.Product.Name</td>
                     <td class="text-right">@line.Product.Price$</td>
                     <td class="text-right">
@@ -42,8 +49,8 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3" class="text-right">Итого:</td>
-                <td class="text-right">
+                <td colspan="5" class="text-right" style="font-weight: 700;">Итого:</td>
+                <td class="text-right" style="font-weight: 700;">
                     @Model.Cart.ComputeTotalValue()$
                 </td>
             </tr>

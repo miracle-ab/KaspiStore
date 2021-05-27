@@ -1,0 +1,62 @@
+﻿@using OnlineStore.Models.ViewModels;
+@using OnlineStore.Helpers;
+
+@model SalesProductViewModel
+
+@{ ViewBag.Title = "Подробнее о заказе"; }
+
+@Html.Partial("_HeaderPartial", "Подробнее о заказе")
+
+
+<div class="table-responsive table-striped" style="width: 80%;margin: 150px auto;display: flex;flex-direction: column;justify-content: space-between;">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th class="text-right">Город</th>
+                <th class="text-right">Адрес</th>
+                <th class="text-right">Email</th>
+                <th class="text-right">Телефон</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr>
+                <td class="text-center">@Model.Customer.FirstName</td>
+                <td class="text-left">@Model.Customer.LastName</td>
+                <td class="text-right">@Model.Customer.City</td>
+                <td class="text-right">@Model.Customer.Address</td>
+                <td class="text-right">@Model.Customer.Email</td>
+                <td class="text-right">@Model.Customer.PhoneNumber</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <table class="table" style="margin-top: 80px;">
+        <thead>
+            <tr>
+                <th>Кол-во</th>
+                <th>Продукт</th>
+                <th class="text-right">Цена</th>
+                <th class="text-right">Общая цена</th>
+ 
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td class="text-center">@product.Quantity</td>
+                    <td class="text-left">@product.Name</td>
+                    <td class="text-right">@product.Price$</td>
+                    <td class="text-right">
+                        @(product.Quantity * product.Price)$
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

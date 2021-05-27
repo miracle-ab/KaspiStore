@@ -43,6 +43,66 @@ namespace OnlineStore.Infrastructure.Business.Services
             return orderHeaders;
         }
 
+        public IQueryable<OrderHeaderDTO> GetAllOrderHeaders()
+        {
+            var currentYear = DateTime.Now.Year;
+
+            var orderHeaders = from ph in unitOfWork.PurchaseOrderHeader.GetList()
+                               where ph.OrderDate.Year == currentYear && ph.Status == 1
+                               select new OrderHeaderDTO
+                               {
+                                   PurchaseOrderID = ph.PurchaseOrderID,
+                                   Status = ph.Status,
+                                   OrderDate = ph.OrderDate,
+                                   ShipDate = ph.ShipDate,
+                                   SubTotal = ph.SubTotal,
+                                   TaxAmt = ph.TaxAmt,
+                                   Freight = ph.Freight,
+                                   TotalDue = ph.TotalDue,
+                                   SalesPerson = ph.Employee.SalesPerson.AspNetUser.UserName
+                               };
+
+            return orderHeaders;
+        }
+
+        public SalesProductDTO GetOrderDetails(int purchaseOrderHeaderID)
+        {
+            var orderHeader = unitOfWork.PurchaseOrderHeader.Get(purchaseOrderHeaderID);
+
+            var aspNetCustomer = unitOfWork.AspNetCustomer.Get(orderHeader.CustomerID ?? 1);
+
+            var productsDTO = new List<ProductDTO>();
+
+            foreach (var orderDetail in orderHeader.PurchaseOrderDetails)
+            {
+                productsDTO.Add(new ProductDTO
+                {
+                    ProductID = orderDetail.ProductID,
+                    Name = orderDetail.Product.Name,
+                    Price = orderDetail.UnitPrice,
+                    Quantity = orderDetail.OrderQty
+                });
+            }
+
+            var customerDTO = new CustomerDTO
+            {
+                FirstName = aspNetCustomer.FirstName,
+                LastName = aspNetCustomer.LastName,
+                City = aspNetCustomer.City,
+                Address = aspNetCustomer.Address,
+                Email = aspNetCustomer.Email,
+                PhoneNumber = aspNetCustomer.PhoneNumber
+            };
+
+            var salesProductDTO = new SalesProductDTO {
+                Products = productsDTO,
+                Customer = customerDTO
+            };
+
+
+            return salesProductDTO;
+        }
+
         public void CreateShipmentXML(int purchaseOrderHeaderID)
         {
             var orderHeader = unitOfWork.PurchaseOrderHeader.Get(purchaseOrderHeaderID);
@@ -89,8 +149,6 @@ namespace OnlineStore.Infrastructure.Business.Services
             xorderHeader.Add(xtotalDue);
 
             msmqServ.SendMessage(xdoc, purchaseOrderHeaderID);
-
-            //xdoc.Save($"C:\\temp\\ShipmentOrder({purchaseOrderHeaderID}).xml");
 
             orderHeader.Status = 2;
             unitOfWork.PurchaseOrderHeader.Update(orderHeader);

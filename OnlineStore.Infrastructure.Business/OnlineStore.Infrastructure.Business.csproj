@@ -49,10 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\CartLineDTO.cs" />
+    <Compile Include="DTO\CustomerDTO.cs" />
     <Compile Include="DTO\OrderHeaderDTO.cs" />
     <Compile Include="DTO\PhotoDTO.cs" />
     <Compile Include="DTO\ProdQtySubstractDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
+    <Compile Include="DTO\SalesProductDTO.cs" />
     <Compile Include="DTO\ShippingDetailsDTO.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />

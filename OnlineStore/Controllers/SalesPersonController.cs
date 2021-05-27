@@ -31,6 +31,36 @@ namespace OnlineStore.Controllers
             return View(orderHeaders);
         }
 
+        public ActionResult AllOrderHeaders()
+        {
+            IEnumerable<OrderHeaderDTO> allOrderHeaderDtos = salesPersonSVC.GetAllOrderHeaders();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderHeaderDTO, OrderHeaderViewModel>()).CreateMapper();
+            var orderHeaders = mapper.Map<IEnumerable<OrderHeaderDTO>, List<OrderHeaderViewModel>>(allOrderHeaderDtos);
+
+            return View(orderHeaders);
+        }
+
+
+        [Authorize(Roles = "manager")]
+        public ActionResult OrderDetails(int purchaseOrderHeaderID)
+        {
+
+            SalesProductDTO salesProductDTO = salesPersonSVC.GetOrderDetails(purchaseOrderHeaderID);
+
+            var mapperProduct = new MapperConfiguration(cfg => cfg.CreateMap<ProductDTO, ProductViewModel>()).CreateMapper();
+            var products = mapperProduct.Map<List<ProductDTO>, List< ProductViewModel>>(salesProductDTO.Products);
+
+            var mapperCustomer = new MapperConfiguration(cfg => cfg.CreateMap<CustomerDTO, CustomerViewModel>()).CreateMapper();
+            var customer = mapperCustomer.Map<CustomerDTO, CustomerViewModel>(salesProductDTO.Customer);
+
+            return View(new SalesProductViewModel 
+            {
+                Products = products,
+                Customer = customer
+            });
+        }
+
+
         [HttpPost]
         [Authorize(Roles = "manager")]
         public ActionResult SentForShipment(int purchaseOrderHeaderID, string returnUrl)

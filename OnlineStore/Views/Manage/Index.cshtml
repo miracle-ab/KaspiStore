@@ -56,12 +56,12 @@
                 }
             </dd>
         *@
-        <dt>Двухфакторная проверка подлинности:</dt>
+        @*<dt>Двухфакторная проверка подлинности:</dt>
         <dd>
             <p>
                 Поставщики двухфакторной проверки подлинности не настроены. В <a href="https://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
                 можно узнать, как настроить двухфакторную проверку подлинности для этого приложения ASP.NET.
-            </p>
+            </p>*@
             @*@if (Model.TwoFactor)
                 {
                     using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -88,4 +88,8 @@
     <h4>Перейти к подтверждению заказов</h4>
     <hr />
     <a href="~/SalesPerson/">Перейти к подтверждению заказов</a>
+
+    <h4 style="margin-top: 20px;">Просмотреть все заказы</h4>
+    <hr />
+    <a href="~/SalesPerson/AllOrderHeaders/">Просмотреть все заказы</a>
 </div>

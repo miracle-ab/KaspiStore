@@ -13,6 +13,18 @@
   <wsdl:message name="ISalesPersonSVC_GetOrderHeaders_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOrderHeadersResponse" />
   </wsdl:message>
+  <wsdl:message name="ISalesPersonSVC_GetAllOrderHeaders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllOrderHeaders" />
+  </wsdl:message>
+  <wsdl:message name="ISalesPersonSVC_GetAllOrderHeaders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllOrderHeadersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISalesPersonSVC_GetOrderDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderDetails" />
+  </wsdl:message>
+  <wsdl:message name="ISalesPersonSVC_GetOrderDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderDetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="ISalesPersonSVC_CreateShipmentXML_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateShipmentXML" />
   </wsdl:message>
@@ -24,6 +36,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISalesPersonSVC/GetOrderHeaders" message="tns:ISalesPersonSVC_GetOrderHeaders_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISalesPersonSVC/GetOrderHeadersResponse" message="tns:ISalesPersonSVC_GetOrderHeaders_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllOrderHeaders">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISalesPersonSVC/GetAllOrderHeaders" message="tns:ISalesPersonSVC_GetAllOrderHeaders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISalesPersonSVC/GetAllOrderHeadersResponse" message="tns:ISalesPersonSVC_GetAllOrderHeaders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISalesPersonSVC/GetOrderDetails" message="tns:ISalesPersonSVC_GetOrderDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISalesPersonSVC/GetOrderDetailsResponse" message="tns:ISalesPersonSVC_GetOrderDetails_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CreateShipmentXML">
       <wsdl:input wsaw:Action="http://tempuri.org/ISalesPersonSVC/CreateShipmentXML" message="tns:ISalesPersonSVC_CreateShipmentXML_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISalesPersonSVC/CreateShipmentXMLResponse" message="tns:ISalesPersonSVC_CreateShipmentXML_OutputMessage" />
@@ -33,6 +53,24 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetOrderHeaders">
       <soap:operation soapAction="http://tempuri.org/ISalesPersonSVC/GetOrderHeaders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllOrderHeaders">
+      <soap:operation soapAction="http://tempuri.org/ISalesPersonSVC/GetAllOrderHeaders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderDetails">
+      <soap:operation soapAction="http://tempuri.org/ISalesPersonSVC/GetOrderDetails" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
