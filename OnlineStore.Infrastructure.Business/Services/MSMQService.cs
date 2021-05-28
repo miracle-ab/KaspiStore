@@ -20,7 +20,7 @@ namespace OnlineStore.Infrastructure.Business.Services
 
                 messageQueue.Formatter = new System.Messaging.XmlMessageFormatter(new Type[] { typeof(System.String) });
 
-                messageQueue.Send(xmlDoc.ToString(), $"OrderNumber({purchaseOrderHeaderID})");
+                messageQueue.Send(xmlDoc.ToString(), $"{purchaseOrderHeaderID}");
             }
             catch (MessageQueueException ex)
             {

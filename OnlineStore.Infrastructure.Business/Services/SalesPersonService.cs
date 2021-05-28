@@ -150,7 +150,15 @@ namespace OnlineStore.Infrastructure.Business.Services
 
             msmqServ.SendMessage(xdoc, purchaseOrderHeaderID);
 
-            orderHeader.Status = 2;
+            orderHeader.Status = 3; //Отправлен 
+            unitOfWork.PurchaseOrderHeader.Update(orderHeader);
+            unitOfWork.Save();
+        }
+    
+        public void ChangeOrderStatus(int purchaseOrderHeaderID)
+        {
+            var orderHeader = unitOfWork.PurchaseOrderHeader.Get(purchaseOrderHeaderID);
+            orderHeader.Status = 4; //Завершен 
             unitOfWork.PurchaseOrderHeader.Update(orderHeader);
             unitOfWork.Save();
         }

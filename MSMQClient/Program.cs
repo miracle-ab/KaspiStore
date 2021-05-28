@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnlineStore.Infrastructure.Business.Services;
+using OnlineStore.Infrastructure.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Messaging;
@@ -16,8 +18,15 @@ namespace MSMQClient
                 Formatter = new XmlMessageFormatter(new String[] { "System.String" })
             };
 
+            UnitOfWork unitOfWork = new UnitOfWork();
+
+            var salesPersonService = new SalesPersonService(unitOfWork);
+
             foreach (Message message in queue.GetAllMessages())
             {
+                var id = int.Parse(message.Label);
+                salesPersonService.ChangeOrderStatus(id);
+
                 Console.WriteLine(message.Label);
                 Console.WriteLine(message.Body);
                 Console.WriteLine("------------------------");
