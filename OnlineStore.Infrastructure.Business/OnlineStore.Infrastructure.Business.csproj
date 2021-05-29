@@ -57,6 +57,7 @@
     <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="DTO\SalesProductDTO.cs" />
     <Compile Include="DTO\ShippingDetailsDTO.cs" />
+    <Compile Include="Enums\Status.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Interfaces\IAccountService.cs" />

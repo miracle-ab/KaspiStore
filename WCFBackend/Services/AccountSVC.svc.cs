@@ -20,5 +20,10 @@ namespace WCFBackend
         {
             accountService.CreatePerson(personDTO);
         }
+
+        public IQueryable<OrderHeaderDTO> GetClientOrderHeaders(string clientId)
+        {
+            return accountService.GetClientOrderHeaders(clientId);
+        }
     }
 }

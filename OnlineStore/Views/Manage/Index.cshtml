@@ -46,4 +46,12 @@
         <a href="~/SalesPerson/AllOrderHeaders/">Просмотреть все заказы</a>
     }
 
+    @if (User.IsInRole("user"))
+    {
+        <h4 style="margin-top: 20px;">Просмотреть ваши заказы</h4>
+        <hr />
+
+        @Html.ActionLink("Просмотреть ваши заказы", "Index", "Client", new { clientId = @User.Identity.GetUserId() }, new { })
+    }
+
 </div>

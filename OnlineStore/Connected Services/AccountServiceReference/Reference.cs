@@ -20,6 +20,12 @@ namespace OnlineStore.AccountServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountSVC/CreatePerson", ReplyAction="http://tempuri.org/IAccountSVC/CreatePersonResponse")]
         System.Threading.Tasks.Task CreatePersonAsync(OnlineStore.Infrastructure.Business.DTO.PersonDTO personDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountSVC/GetClientOrderHeaders", ReplyAction="http://tempuri.org/IAccountSVC/GetClientOrderHeadersResponse")]
+        OnlineStore.Infrastructure.Business.DTO.OrderHeaderDTO[] GetClientOrderHeaders(string clientId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountSVC/GetClientOrderHeaders", ReplyAction="http://tempuri.org/IAccountSVC/GetClientOrderHeadersResponse")]
+        System.Threading.Tasks.Task<OnlineStore.Infrastructure.Business.DTO.OrderHeaderDTO[]> GetClientOrderHeadersAsync(string clientId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace OnlineStore.AccountServiceReference {
         
         public System.Threading.Tasks.Task CreatePersonAsync(OnlineStore.Infrastructure.Business.DTO.PersonDTO personDTO) {
             return base.Channel.CreatePersonAsync(personDTO);
+        }
+        
+        public OnlineStore.Infrastructure.Business.DTO.OrderHeaderDTO[] GetClientOrderHeaders(string clientId) {
+            return base.Channel.GetClientOrderHeaders(clientId);
+        }
+        
+        public System.Threading.Tasks.Task<OnlineStore.Infrastructure.Business.DTO.OrderHeaderDTO[]> GetClientOrderHeadersAsync(string clientId) {
+            return base.Channel.GetClientOrderHeadersAsync(clientId);
         }
     }
 }

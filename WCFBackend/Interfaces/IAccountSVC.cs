@@ -13,5 +13,8 @@ namespace WCFBackend
     {
         [OperationContract]
         void CreatePerson(PersonDTO personDTO);
+
+        [OperationContract]
+        IQueryable<OrderHeaderDTO> GetClientOrderHeaders(string clientId);
     }
 }

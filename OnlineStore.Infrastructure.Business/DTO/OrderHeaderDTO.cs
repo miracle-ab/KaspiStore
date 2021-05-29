@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineStore.Infrastructure.Business.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace OnlineStore.Infrastructure.Business.DTO
     public class OrderHeaderDTO
     {
         public int PurchaseOrderID { get; set; }
-        public byte Status { get; set; }
+        public Status Status { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime? ShipDate { get; set; }
         public decimal SubTotal { get; set; }

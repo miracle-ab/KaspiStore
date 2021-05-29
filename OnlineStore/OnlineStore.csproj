@@ -214,6 +214,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -309,17 +310,17 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\AccountServiceReference\AccountSVC.disco" />
-    <None Include="Connected Services\AccountServiceReference\configuration91.svcinfo" />
-    <None Include="Connected Services\AccountServiceReference\configuration.svcinfo" />
-    <None Include="Connected Services\AccountServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Connected Services\OrderProcessorServiceReference\OrderProcessorSVC.disco" />
     <None Include="Connected Services\OrderProcessorServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\OrderProcessorServiceReference\configuration.svcinfo" />
     <None Include="Connected Services\OrderProcessorServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\AccountServiceReference\AccountSVC.disco" />
+    <None Include="Connected Services\AccountServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\AccountServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\AccountServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -530,6 +531,7 @@
     <Content Include="Views\SalesPerson\OrderDetails.cshtml" />
     <Content Include="Views\SalesPerson\AllOrderHeaders.cshtml" />
     <Content Include="Views\Cart\CheckoutAuthenticated.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
     <None Include="Views\Shared\_DeliveryPartial.cshtml" />
     <Content Include="Views\Shared\_HeaderPartial.cshtml" />
   </ItemGroup>

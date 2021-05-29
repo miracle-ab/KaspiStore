@@ -1,4 +1,5 @@
 ﻿using OnlineStore.Infrastructure.Business.DTO;
+using OnlineStore.Infrastructure.Business.Enums;
 using OnlineStore.Infrastructure.Business.Interfaces;
 using OnlineStore.Infrastructure.Data;
 using System;
@@ -14,12 +15,12 @@ namespace OnlineStore.Infrastructure.Business.Services
     {
         UnitOfWork unitOfWork { get; set; }
 
-        MSMQService msmqServ { get; set; }
+        MSMQService MsmqServ { get; set; }
 
         public SalesPersonService(UnitOfWork uow)
         {
             unitOfWork = uow;
-            msmqServ = new MSMQService();
+            MsmqServ = new MSMQService();
         }
 
         public IQueryable<OrderHeaderDTO> GetOrderHeaders(string userId)
@@ -31,7 +32,7 @@ namespace OnlineStore.Infrastructure.Business.Services
                                select new OrderHeaderDTO
                                {
                                    PurchaseOrderID = ph.PurchaseOrderID,
-                                   Status = ph.Status,
+                                   Status = Status.Pending,
                                    OrderDate = ph.OrderDate,
                                    ShipDate = ph.ShipDate,
                                    SubTotal = ph.SubTotal,
@@ -52,7 +53,7 @@ namespace OnlineStore.Infrastructure.Business.Services
                                select new OrderHeaderDTO
                                {
                                    PurchaseOrderID = ph.PurchaseOrderID,
-                                   Status = ph.Status,
+                                   Status = Status.Pending,
                                    OrderDate = ph.OrderDate,
                                    ShipDate = ph.ShipDate,
                                    SubTotal = ph.SubTotal,
@@ -148,7 +149,7 @@ namespace OnlineStore.Infrastructure.Business.Services
             xdoc.Add(xorderHeader);
             xorderHeader.Add(xtotalDue);
 
-            msmqServ.SendMessage(xdoc, purchaseOrderHeaderID);
+            MsmqServ.SendMessage(xdoc, purchaseOrderHeaderID);
 
             orderHeader.Status = 3; //Отправлен 
             unitOfWork.PurchaseOrderHeader.Update(orderHeader);

@@ -2,6 +2,7 @@
 using OnlineStore.Infrastructure.Business.DTO;
 using OnlineStore.Infrastructure.Business.Interfaces;
 using OnlineStore.Infrastructure.Data;
+using OnlineStore.Infrastructure.Business.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,5 +71,29 @@ namespace OnlineStore.Infrastructure.Business.Services
 
             unitOfWork.Save();
         }
+
+        public IQueryable<OrderHeaderDTO> GetClientOrderHeaders(string clientId)
+        {
+            var person = unitOfWork.Person.GetList(i => i.UserID == clientId).FirstOrDefault();
+
+            var orderHeaders = from ph in unitOfWork.PurchaseOrderHeader.GetList()
+                               where ph.PersonID == person.BusinessEntityID && ph.Status == 2
+                               select new OrderHeaderDTO
+                               {
+                                   PurchaseOrderID = ph.PurchaseOrderID,
+                                   Status = Status.Pending,
+                                   OrderDate = ph.OrderDate,
+                                   ShipDate = ph.ShipDate,
+                                   SubTotal = ph.SubTotal,
+                                   TaxAmt = ph.TaxAmt,
+                                   Freight = ph.Freight,
+                                   TotalDue = ph.TotalDue
+                               };
+
+            return orderHeaders;
+        }
+
+
+
     }
 }

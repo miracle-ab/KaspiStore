@@ -9,7 +9,7 @@ namespace OnlineStore.Models.ViewModels
     public class OrderHeaderViewModel
     {
         public int PurchaseOrderID { get; set; }
-        public byte Status { get; set; }
+        public Status Status { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime? ShipDate { get; set; }
         public decimal SubTotal { get; set; }
@@ -17,5 +17,13 @@ namespace OnlineStore.Models.ViewModels
         public decimal Freight { get; set; }
         public decimal TotalDue { get; set; }
         public string SalesPerson { get; set; }
+    }
+
+    public enum Status
+    {
+        New,
+        Pending,
+        Sent,
+        Closed
     }
 }

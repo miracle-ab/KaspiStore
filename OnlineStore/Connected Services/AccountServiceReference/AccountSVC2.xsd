@@ -24,4 +24,24 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="Country" nillable="true" type="tns:Country" />
+  <xs:complexType name="ArrayOfOrderHeaderDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderHeaderDTO" nillable="true" type="tns:OrderHeaderDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderHeaderDTO" nillable="true" type="tns:ArrayOfOrderHeaderDTO" />
+  <xs:complexType name="OrderHeaderDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Freight" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OrderDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PurchaseOrderID" type="xs:int" />
+      <xs:element minOccurs="0" name="SalesPerson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="SubTotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxAmt" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TotalDue" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderHeaderDTO" nillable="true" type="tns:OrderHeaderDTO" />
 </xs:schema>
