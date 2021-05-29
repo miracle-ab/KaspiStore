@@ -14,6 +14,7 @@ namespace OnlineStore.Domain.Core.Entities
         {
             BusinessEntityAddresses = new HashSet<BusinessEntityAddress>();
             BusinessEntityContacts = new HashSet<BusinessEntityContact>();
+            PurchaseOrderHeaders = new HashSet<PurchaseOrderHeader>();
         }
 
         public int BusinessEntityID { get; set; }
@@ -29,6 +30,9 @@ namespace OnlineStore.Domain.Core.Entities
         public virtual ICollection<BusinessEntityContact> BusinessEntityContacts { get; set; }
 
         public virtual Person Person { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
 
         public virtual Store Store { get; set; }
 

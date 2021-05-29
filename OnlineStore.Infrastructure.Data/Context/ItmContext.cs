@@ -192,6 +192,11 @@ namespace OnlineStore.Infrastructure.Data.Context
                 .WithRequired(e => e.BusinessEntity);
 
             modelBuilder.Entity<BusinessEntity>()
+                .HasMany(e => e.PurchaseOrderHeaders)
+                .WithOptional(e => e.BusinessEntity)
+                .HasForeignKey(e => e.PersonID);
+
+            modelBuilder.Entity<BusinessEntity>()
                 .HasOptional(e => e.Store)
                 .WithRequired(e => e.BusinessEntity);
 
@@ -264,11 +269,6 @@ namespace OnlineStore.Infrastructure.Data.Context
                 .HasMany(e => e.PersonPhones)
                 .WithRequired(e => e.Person)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Person>()
-                .HasMany(e => e.PurchaseOrderHeaders)
-                .WithOptional(e => e.Person)
-                .HasForeignKey(e => e.PersonID);
 
             modelBuilder.Entity<PhoneNumberType>()
                 .HasMany(e => e.PersonPhones)

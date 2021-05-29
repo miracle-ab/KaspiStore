@@ -47,7 +47,7 @@ namespace OnlineStore.Infrastructure.Data
 
         private AddressRepository addressRep;
 
-        private CustomerRepository customerRep;
+        private BusinessEntityRepository businessEntityRep;
 
         public IRepository<Product> Products
         {
@@ -216,6 +216,16 @@ namespace OnlineStore.Infrastructure.Data
                 if (addressRep == null)
                     addressRep = new AddressRepository(db);
                 return addressRep;
+            }
+        }
+
+        public BusinessEntityRepository BusinessEntity
+        {
+            get
+            {
+                if (businessEntityRep == null)
+                    businessEntityRep = new BusinessEntityRepository(db);
+                return businessEntityRep;
             }
         }
 

@@ -55,7 +55,7 @@ namespace OnlineStore.Domain.Core.Entities
 
         public virtual Employee Employee { get; set; }
 
-        public virtual Person Person { get; set; }
+        public virtual BusinessEntity BusinessEntity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }

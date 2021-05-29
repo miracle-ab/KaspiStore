@@ -27,7 +27,7 @@ namespace OnlineStore.Infrastructure.Business.Services
             var salesPersonId = unitOfWork.SalesPerson.GetList(i => i.UserId == userId).FirstOrDefault();
 
             var orderHeaders = from ph in unitOfWork.PurchaseOrderHeader.GetList()
-                               where ph.EmployeeID == salesPersonId.BusinessEntityID && ph.Status == 1
+                               where ph.EmployeeID == salesPersonId.BusinessEntityID && ph.Status == 2
                                select new OrderHeaderDTO
                                {
                                    PurchaseOrderID = ph.PurchaseOrderID,
@@ -48,7 +48,7 @@ namespace OnlineStore.Infrastructure.Business.Services
             var currentYear = DateTime.Now.Year;
 
             var orderHeaders = from ph in unitOfWork.PurchaseOrderHeader.GetList()
-                               where ph.OrderDate.Year == currentYear && ph.Status == 1
+                               where ph.OrderDate.Year == currentYear && ph.Status == 2
                                select new OrderHeaderDTO
                                {
                                    PurchaseOrderID = ph.PurchaseOrderID,
@@ -69,7 +69,7 @@ namespace OnlineStore.Infrastructure.Business.Services
         {
             var orderHeader = unitOfWork.PurchaseOrderHeader.Get(purchaseOrderHeaderID);
 
-            var aspNetCustomer = unitOfWork.AspNetCustomer.Get(orderHeader.CustomerID ?? 1);
+            var aspNetCustomer = unitOfWork.Person.Get((int)orderHeader.PersonID);
 
             var productsDTO = new List<ProductDTO>();
 
@@ -88,10 +88,10 @@ namespace OnlineStore.Infrastructure.Business.Services
             {
                 FirstName = aspNetCustomer.FirstName,
                 LastName = aspNetCustomer.LastName,
-                City = aspNetCustomer.City,
-                Address = aspNetCustomer.Address,
-                Email = aspNetCustomer.Email,
-                PhoneNumber = aspNetCustomer.PhoneNumber
+                City = aspNetCustomer.BusinessEntity.BusinessEntityAddresses.First().Address.City,
+                Address = aspNetCustomer.BusinessEntity.BusinessEntityAddresses.First().Address.AddressLine1,
+                Email = aspNetCustomer.EmailAddresses.First().EmailAddress1,
+                PhoneNumber = aspNetCustomer.PersonPhones.First().PhoneNumber
             };
 
             var salesProductDTO = new SalesProductDTO {
@@ -107,7 +107,7 @@ namespace OnlineStore.Infrastructure.Business.Services
         {
             var orderHeader = unitOfWork.PurchaseOrderHeader.Get(purchaseOrderHeaderID);
 
-            var aspNetCustomer = unitOfWork.AspNetCustomer.Get(orderHeader.CustomerID ?? 1);
+            var aspNetCustomer = unitOfWork.Person.Get((int)orderHeader.PersonID);
 
             XDocument xdoc = new XDocument();
             XElement xclient= new XElement("client");
@@ -117,10 +117,10 @@ namespace OnlineStore.Infrastructure.Business.Services
             XAttribute xmiddleName = new XAttribute("middleName", aspNetCustomer.MiddleName ?? "");
             XAttribute xlastName = new XAttribute("lastName", aspNetCustomer.LastName);
 
-            XElement xcity = new XElement("city", aspNetCustomer.City);
-            XElement xaddress = new XElement("address", aspNetCustomer.Address);
-            XElement xemail = new XElement("email", aspNetCustomer.Email);
-            XElement xmobilePhone = new XElement("mobilePhone", aspNetCustomer.PhoneNumber);
+            XElement xcity = new XElement("city", aspNetCustomer.BusinessEntity.BusinessEntityAddresses.First().Address.City);
+            XElement xaddress = new XElement("address", aspNetCustomer.BusinessEntity.BusinessEntityAddresses.First().Address.AddressLine1);
+            XElement xemail = new XElement("email", aspNetCustomer.EmailAddresses.First().EmailAddress1);
+            XElement xmobilePhone = new XElement("mobilePhone", aspNetCustomer.PersonPhones.First().PhoneNumber);
 
             XElement xtotalDue = new XElement("totalDue", orderHeader.TotalDue);
 

@@ -17,7 +17,6 @@ namespace OnlineStore.Domain.Core.Entities
             Customers = new HashSet<Customer>();
             PersonCreditCards = new HashSet<PersonCreditCard>();
             PersonPhones = new HashSet<PersonPhone>();
-            PurchaseOrderHeaders = new HashSet<PurchaseOrderHeader>();
         }
 
         [Key]
@@ -81,8 +80,5 @@ namespace OnlineStore.Domain.Core.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonPhone> PersonPhones { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
     }
 }

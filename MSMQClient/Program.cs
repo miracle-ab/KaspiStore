@@ -32,6 +32,7 @@ namespace MSMQClient
                 Console.WriteLine("------------------------");
             }
 
+            queue.Purge();
             Console.ReadKey();
         }
     }

@@ -32,7 +32,7 @@ namespace OnlineStore.Infrastructure.Business.Services
             var orderHeader = new PurchaseOrderHeader() 
             {
                 RevisionNumber = 1,
-                Status = 1,
+                Status = 2,
                 EmployeeID = employeeID,
                 ShipMethodID = 1,
                 OrderDate = DateTime.Now,
@@ -62,9 +62,71 @@ namespace OnlineStore.Infrastructure.Business.Services
             }
 
             customer.PurchaseOrderHeaders.Add(orderHeader);
+            unitOfWork.Save();
+        }
 
-            unitOfWork.Person.Create(customer);
+        public void ProccesOrderAuthenticated(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails, string userId)
+        {
+            var person = unitOfWork.Person.GetList(i => i.UserID == userId).FirstOrDefault();
 
+            var busEntity = unitOfWork.BusinessEntity.Get(person.BusinessEntityID);
+
+            var employeeID = GetSalesPerson(shippingDetails.Country.ToString());
+
+            var personPhone = new PersonPhone()
+            {
+                PhoneNumber = shippingDetails.MobilePhone,
+                PhoneNumberTypeID = 1,
+                ModifiedDate = DateTime.Now
+            };
+
+            var emailAddress = new EmailAddress()
+            {
+                EmailAddress1 = shippingDetails.Email,
+                rowguid = Guid.NewGuid(),
+                ModifiedDate = DateTime.Now
+            };
+
+            person.EmailAddresses.Add(emailAddress);
+            person.PersonPhones.Add(personPhone);
+
+            var subTotal = CartTotalValue(cart);
+            var taxAmt = (CartTotalValue(cart) * 8) / 100;
+            var freight = (CartTotalValue(cart) * 25) / 1000;
+
+            var orderHeader = new PurchaseOrderHeader()
+            {
+                RevisionNumber = 1,
+                Status = 2,
+                EmployeeID = employeeID,
+                ShipMethodID = 1,
+                OrderDate = DateTime.Now,
+                SubTotal = subTotal,
+                TaxAmt = taxAmt,
+                Freight = freight,
+                TotalDue = subTotal + taxAmt + freight,
+                ModifiedDate = DateTime.Now
+            };
+
+            foreach (var item in cart)
+            {
+                var orderDetail = new PurchaseOrderDetail()
+                {
+                    DueDate = DateTime.Now.AddDays(5),
+                    OrderQty = (short)item.Quantity,
+                    ProductID = item.Product.ProductID,
+                    UnitPrice = item.Product.Price,
+                    LineTotal = item.Product.Price * item.Quantity,
+                    ReceivedQty = item.Quantity,
+                    RejectedQty = 0,
+                    StockedQty = item.Quantity,
+                    ModifiedDate = DateTime.Now
+                };
+
+                orderHeader.PurchaseOrderDetails.Add(orderDetail);
+            }
+
+            busEntity.PurchaseOrderHeaders.Add(orderHeader);
             unitOfWork.Save();
         }
 
@@ -79,7 +141,7 @@ namespace OnlineStore.Infrastructure.Business.Services
             return salesPerson;
         }
 
-        public Person CreateCurrentCustomer(ShippingDetailsDTO shippingDetails)
+        public BusinessEntity CreateCurrentCustomer(ShippingDetailsDTO shippingDetails)
         {
             var busEntity = new BusinessEntity()
             {
@@ -142,70 +204,11 @@ namespace OnlineStore.Infrastructure.Business.Services
 
             unitOfWork.Address.Create(address);
 
-            return personCurrent;
-        }
-   
-        public void ProccesOrderAuthenticated(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails, string userId)
-        {
-            var person = unitOfWork.Person.GetList(i => i.UserID == userId).FirstOrDefault();
+            unitOfWork.Person.Create(personCurrent);
 
-            var employeeID = GetSalesPerson(shippingDetails.Country.ToString());
-           
-            var personPhone = new PersonPhone()
-            {
-                PhoneNumber = shippingDetails.MobilePhone,
-                PhoneNumberTypeID = 1,
-                ModifiedDate = DateTime.Now
-            };
-
-            var emailAddress = new EmailAddress()
-            {
-                EmailAddress1 = shippingDetails.Email,
-                rowguid = Guid.NewGuid(),
-                ModifiedDate = DateTime.Now
-            };
-
-            person.EmailAddresses.Add(emailAddress);
-            person.PersonPhones.Add(personPhone);
-
-            var subTotal = CartTotalValue(cart);
-            var taxAmt = (CartTotalValue(cart) * 8) / 100;
-            var freight = (CartTotalValue(cart) * 25) / 1000;
-
-            var orderHeader = new PurchaseOrderHeader()
-            {
-                RevisionNumber = 1,
-                Status = 1,
-                EmployeeID = employeeID,
-                ShipMethodID = 1,
-                OrderDate = DateTime.Now,
-                SubTotal = subTotal,
-                TaxAmt = taxAmt,
-                Freight = freight,
-                TotalDue = subTotal + taxAmt + freight,
-                ModifiedDate = DateTime.Now
-            };
-
-            foreach (var item in cart)
-            {
-                var orderDetail = new PurchaseOrderDetail()
-                {
-                    DueDate = DateTime.Now.AddDays(5),
-                    OrderQty = (short)item.Quantity,
-                    ProductID = item.Product.ProductID,
-                    UnitPrice = item.Product.Price,
-                    LineTotal = item.Product.Price * item.Quantity,
-                    ReceivedQty = item.Quantity,
-                    RejectedQty = 0,
-                    StockedQty = item.Quantity,
-                    ModifiedDate = DateTime.Now
-                };
-
-                orderHeader.PurchaseOrderDetails.Add(orderDetail);
-            }
-
-            person.PurchaseOrderHeaders.Add(orderHeader);
             unitOfWork.Save();
+
+            return busEntity;
         }
 
         public decimal CartTotalValue(IEnumerable<CartLineDTO> lineCollection)
