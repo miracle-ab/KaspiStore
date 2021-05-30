@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WCFBackend
 { 
@@ -18,7 +19,7 @@ namespace WCFBackend
         }
         public void CreateShipmentXML(int purchaseOrderHeaderID)
         {
-            salesPersonService.CreateShipmentXML(purchaseOrderHeaderID);
+           salesPersonService.CreateShipmentXMLAsync(purchaseOrderHeaderID);
         }
 
         public SalesProductDTO GetOrderDetails(int purchaseOrderHeaderID)

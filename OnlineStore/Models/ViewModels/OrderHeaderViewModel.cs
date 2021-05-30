@@ -21,9 +21,9 @@ namespace OnlineStore.Models.ViewModels
 
     public enum Status
     {
-        New,
-        Pending,
-        Sent,
-        Closed
+        New = 1,
+        Pending = 2,
+        Sent = 3,
+        Closed = 4
     }
 }

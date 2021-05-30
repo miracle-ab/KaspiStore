@@ -13,13 +13,15 @@ namespace OnlineStore.Infrastructure.Business.Services
     public class OrderProcessorService : IOrderProcessorService
     {
         UnitOfWork unitOfWork { get; set; }
+        EmailService emailService { get; set; }
 
         public OrderProcessorService(UnitOfWork uow)
         {
             unitOfWork = uow;
+            emailService = new EmailService();
         }
 
-        public void ProcessOrder(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails)
+        public async Task ProcessOrderAsync(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails)
         {
             var employeeID = GetSalesPerson(shippingDetails.Country.ToString());
 
@@ -63,9 +65,11 @@ namespace OnlineStore.Infrastructure.Business.Services
 
             customer.PurchaseOrderHeaders.Add(orderHeader);
             unitOfWork.Save();
+
+            await emailService.SendEmailAsync(orderHeader.PurchaseOrderID);
         }
 
-        public void ProccesOrderAuthenticated(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails, string userId)
+        public async Task ProccesOrderAuthenticatedAsync(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails, string userId)
         {
             var person = unitOfWork.Person.GetList(i => i.UserID == userId).FirstOrDefault();
 
@@ -128,6 +132,8 @@ namespace OnlineStore.Infrastructure.Business.Services
 
             busEntity.PurchaseOrderHeaders.Add(orderHeader);
             unitOfWork.Save();
+
+            await emailService.SendEmailAsync(orderHeader.PurchaseOrderID);
         }
 
         public int GetSalesPerson(string country)

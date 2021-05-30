@@ -8,6 +8,7 @@ using OnlineStore.OrderProcessorServiceReference;
 using OnlineStore.CartStoreServiceReference;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
 
 namespace OnlineStore.Controllers
 {
@@ -70,7 +71,7 @@ namespace OnlineStore.Controllers
         }
 
         [HttpPost]
-        public ViewResult Checkout(CartSVCClient cart, ShippingDetailsViewModel shippingDetails)
+        public async Task<ActionResult> Checkout(CartSVCClient cart, ShippingDetailsViewModel shippingDetails)
         {
             if (cart.Lines().Count() == 0)
             {
@@ -84,7 +85,7 @@ namespace OnlineStore.Controllers
 
                 CartLineDTO[] cartLines = cart.Lines();
 
-                orderProcessorService.ProcessOrder(cartLines, shippingDetailsDTO);
+                await orderProcessorService.ProcessOrderAsync(cartLines, shippingDetailsDTO);
                 cart.Clear();
 
                 return View("Completed");
@@ -97,7 +98,7 @@ namespace OnlineStore.Controllers
 
         [Authorize(Roles = "user")]
         [HttpPost]
-        public ViewResult CheckoutAuthenticated(CartSVCClient cart, ShippingDetailsAuthenticatedViewModel shippingDetails)
+        public async Task<ActionResult> CheckoutAuthenticated(CartSVCClient cart, ShippingDetailsAuthenticatedViewModel shippingDetails)
         {
             if (cart.Lines().Count() == 0)
             {
@@ -113,7 +114,7 @@ namespace OnlineStore.Controllers
 
                 CartLineDTO[] cartLines = cart.Lines();
 
-                orderProcessorService.ProccesOrderAuthenticated(cartLines, shippingDetailsDTO, userId);
+                await orderProcessorService.ProccesOrderAuthenticatedAsync(cartLines, shippingDetailsDTO, userId);
                 cart.Clear();
 
                 return View("Completed");

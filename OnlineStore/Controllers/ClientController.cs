@@ -18,7 +18,7 @@ namespace OnlineStore.Controllers
             accountService = serv;
         }
 
-        [Authorize(Roles = "user")]
+        [Authorize(Roles = "user, manager")]
         public ActionResult Index(string clientId)
         {
             IEnumerable<OrderHeaderDTO> orderHeaderDtos = accountService.GetClientOrderHeaders(clientId);

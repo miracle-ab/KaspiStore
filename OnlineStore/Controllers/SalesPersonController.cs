@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using OnlineStore.Models.ViewModels;
@@ -64,9 +65,9 @@ namespace OnlineStore.Controllers
 
         [HttpPost]
         [Authorize(Roles = "manager")]
-        public ActionResult SentForShipment(int purchaseOrderHeaderID, string returnUrl)
+        public async Task<ActionResult> SentForShipment(int purchaseOrderHeaderID, string returnUrl)
         {
-            salesPersonSVC.CreateShipmentXML(purchaseOrderHeaderID);
+            await salesPersonSVC.CreateShipmentXMLAsync(purchaseOrderHeaderID);
 
             return RedirectToAction("Index");
         }

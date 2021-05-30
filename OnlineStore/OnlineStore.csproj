@@ -303,6 +303,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\AccountServiceReference\AccountSVC.disco" />
+    <None Include="Connected Services\AccountServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\AccountServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\AccountServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Connected Services\SalesPersonServiceReference\SalesPersonSVC.disco" />
     <None Include="Connected Services\SalesPersonServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\SalesPersonServiceReference\configuration.svcinfo" />
@@ -314,13 +321,6 @@
     <None Include="Connected Services\OrderProcessorServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\OrderProcessorServiceReference\configuration.svcinfo" />
     <None Include="Connected Services\OrderProcessorServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\AccountServiceReference\AccountSVC.disco" />
-    <None Include="Connected Services\AccountServiceReference\configuration91.svcinfo" />
-    <None Include="Connected Services\AccountServiceReference\configuration.svcinfo" />
-    <None Include="Connected Services\AccountServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -389,6 +389,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\SalesPersonServiceReference\SalesPersonSVC2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SalesPersonServiceReference\SalesPersonSVC3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />

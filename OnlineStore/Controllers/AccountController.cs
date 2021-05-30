@@ -158,6 +158,7 @@ namespace OnlineStore.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     var personVM = new PersonViewModel
@@ -178,6 +179,8 @@ namespace OnlineStore.Controllers
                     await accountService.CreatePersonAsync(personDTO);
 
                     await UserManager.AddToRoleAsync(user.Id, "user");
+
+                    await UserManager.AddToRoleAsync(user.Id, "customer");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

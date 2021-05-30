@@ -11,7 +11,7 @@ namespace MSMQClient
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var queue = new MessageQueue(@".\private$\OrdersQueue")
             {
@@ -25,7 +25,7 @@ namespace MSMQClient
             foreach (Message message in queue.GetAllMessages())
             {
                 var id = int.Parse(message.Label);
-                salesPersonService.ChangeOrderStatus(id);
+                await salesPersonService.ChangeOrderStatus(id);
 
                 Console.WriteLine(message.Label);
                 Console.WriteLine(message.Body);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="541cd0b7-0287-4c82-af95-b5c82fe1cfaa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="80868940-1954-4a3e-a7d7-31423b69b6d0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost:62335/Services/SalesPersonSVC.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SalesPersonSVC.xsd" MetadataType="Schema" ID="cd2cd19c-a03d-4c40-ab02-91ed928ac8f5" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?xsd=xsd0" />
-    <MetadataFile FileName="SalesPersonSVC.wsdl" MetadataType="Wsdl" ID="58a5a658-99ef-4871-91ba-bd85cae6e2d2" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?wsdl" />
-    <MetadataFile FileName="SalesPersonSVC1.xsd" MetadataType="Schema" ID="335b4c72-c0c6-48ad-9a13-26376591efa1" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?xsd=xsd2" />
-    <MetadataFile FileName="SalesPersonSVC.disco" MetadataType="Disco" ID="2648a34c-c37b-4e09-a3d0-a617d2f40009" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?disco" />
-    <MetadataFile FileName="SalesPersonSVC2.xsd" MetadataType="Schema" ID="466db7ab-99c7-41ea-96c0-b3bc8eebf0a7" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?xsd=xsd1" />
+    <MetadataFile FileName="SalesPersonSVC.xsd" MetadataType="Schema" ID="b2ebdc01-475a-45dd-aa5b-ef28d1d1fe6d" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?xsd=xsd2" />
+    <MetadataFile FileName="SalesPersonSVC.wsdl" MetadataType="Wsdl" ID="f0491a6e-d169-4874-8f3b-5c3c171fb7e6" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?wsdl" />
+    <MetadataFile FileName="SalesPersonSVC1.xsd" MetadataType="Schema" ID="3b63002f-cd81-4957-ba67-bf1a20ef6d95" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?xsd=xsd1" />
+    <MetadataFile FileName="SalesPersonSVC2.xsd" MetadataType="Schema" ID="f9a8d736-b67d-42dc-a57f-3bd0bc7484cf" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?xsd=xsd0" />
+    <MetadataFile FileName="SalesPersonSVC.disco" MetadataType="Disco" ID="cd341fb2-dd16-4d12-a29b-ea02a99e70bf" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?disco" />
+    <MetadataFile FileName="SalesPersonSVC3.xsd" MetadataType="Schema" ID="38b20d92-fa94-41f8-9847-cb85a1320b00" SourceId="1" SourceUrl="http://localhost:62335/Services/SalesPersonSVC.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

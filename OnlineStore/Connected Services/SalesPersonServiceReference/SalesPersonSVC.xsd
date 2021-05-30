@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:62335/Services/SalesPersonSVC.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" />
-  <xs:element name="GetOrderHeaders">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetOrderHeadersResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" minOccurs="0" name="GetOrderHeadersResult" nillable="true" type="q1:ArrayOfOrderHeaderDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAllOrderHeaders">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAllOrderHeadersResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" minOccurs="0" name="GetAllOrderHeadersResult" nillable="true" type="q2:ArrayOfOrderHeaderDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetOrderDetails">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="purchaseOrderHeaderID" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetOrderDetailsResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" minOccurs="0" name="GetOrderDetailsResult" nillable="true" type="q3:SalesProductDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateShipmentXML">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="purchaseOrderHeaderID" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateShipmentXMLResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:62335/Services/SalesPersonSVC.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.Enums" />
+  <xs:complexType name="ArrayOfOrderHeaderDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderHeaderDTO" nillable="true" type="tns:OrderHeaderDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderHeaderDTO" nillable="true" type="tns:ArrayOfOrderHeaderDTO" />
+  <xs:complexType name="OrderHeaderDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Freight" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OrderDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PurchaseOrderID" type="xs:int" />
+      <xs:element minOccurs="0" name="SalesPerson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipDate" nillable="true" type="xs:dateTime" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/OnlineStore.Infrastructure.Business.Enums" minOccurs="0" name="Status" type="q1:Status" />
+      <xs:element minOccurs="0" name="SubTotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxAmt" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TotalDue" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderHeaderDTO" nillable="true" type="tns:OrderHeaderDTO" />
+  <xs:complexType name="SalesProductDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Customer" nillable="true" type="tns:CustomerDTO" />
+      <xs:element minOccurs="0" name="Products" nillable="true" type="tns:ArrayOfProductDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SalesProductDTO" nillable="true" type="tns:SalesProductDTO" />
+  <xs:complexType name="CustomerDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerDTO" nillable="true" type="tns:CustomerDTO" />
+  <xs:complexType name="ArrayOfProductDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductDTO" nillable="true" type="tns:ProductDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductDTO" nillable="true" type="tns:ArrayOfProductDTO" />
+  <xs:complexType name="ProductDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="Size" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SizeUnitMeasureCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductDTO" nillable="true" type="tns:ProductDTO" />
 </xs:schema>

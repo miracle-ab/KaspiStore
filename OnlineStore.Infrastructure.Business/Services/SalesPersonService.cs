@@ -14,13 +14,14 @@ namespace OnlineStore.Infrastructure.Business.Services
     public class SalesPersonService : ISalesPersonService
     {
         UnitOfWork unitOfWork { get; set; }
-
         MSMQService MsmqServ { get; set; }
+        EmailService emailService { get; set; }
 
         public SalesPersonService(UnitOfWork uow)
         {
             unitOfWork = uow;
             MsmqServ = new MSMQService();
+            emailService = new EmailService();
         }
 
         public IQueryable<OrderHeaderDTO> GetOrderHeaders(string userId)
@@ -104,24 +105,24 @@ namespace OnlineStore.Infrastructure.Business.Services
             return salesProductDTO;
         }
 
-        public void CreateShipmentXML(int purchaseOrderHeaderID)
+        public async Task CreateShipmentXMLAsync(int purchaseOrderHeaderID)
         {
             var orderHeader = unitOfWork.PurchaseOrderHeader.Get(purchaseOrderHeaderID);
 
-            var aspNetCustomer = unitOfWork.Person.Get((int)orderHeader.PersonID);
+            var customer = unitOfWork.Person.Get((int)orderHeader.PersonID);
 
             XDocument xdoc = new XDocument();
             XElement xclient= new XElement("client");
             XElement xorderHeader = new XElement("orderHeader");
 
-            XAttribute xfirstName = new XAttribute("firstName", aspNetCustomer.FirstName);
-            XAttribute xmiddleName = new XAttribute("middleName", aspNetCustomer.MiddleName ?? "");
-            XAttribute xlastName = new XAttribute("lastName", aspNetCustomer.LastName);
+            XAttribute xfirstName = new XAttribute("firstName", customer.FirstName);
+            XAttribute xmiddleName = new XAttribute("middleName", customer.MiddleName ?? "");
+            XAttribute xlastName = new XAttribute("lastName", customer.LastName);
 
-            XElement xcity = new XElement("city", aspNetCustomer.BusinessEntity.BusinessEntityAddresses.First().Address.City);
-            XElement xaddress = new XElement("address", aspNetCustomer.BusinessEntity.BusinessEntityAddresses.First().Address.AddressLine1);
-            XElement xemail = new XElement("email", aspNetCustomer.EmailAddresses.First().EmailAddress1);
-            XElement xmobilePhone = new XElement("mobilePhone", aspNetCustomer.PersonPhones.First().PhoneNumber);
+            XElement xcity = new XElement("city", customer.BusinessEntity.BusinessEntityAddresses.First().Address.City);
+            XElement xaddress = new XElement("address", customer.BusinessEntity.BusinessEntityAddresses.First().Address.AddressLine1);
+            XElement xemail = new XElement("email", customer.EmailAddresses.First().EmailAddress1);
+            XElement xmobilePhone = new XElement("mobilePhone", customer.PersonPhones.First().PhoneNumber);
 
             XElement xtotalDue = new XElement("totalDue", orderHeader.TotalDue);
 
@@ -154,14 +155,20 @@ namespace OnlineStore.Infrastructure.Business.Services
             orderHeader.Status = 3; //Отправлен 
             unitOfWork.PurchaseOrderHeader.Update(orderHeader);
             unitOfWork.Save();
+
+            await emailService.SendEmailAsync(orderHeader.PurchaseOrderID);
         }
     
-        public void ChangeOrderStatus(int purchaseOrderHeaderID)
+        public async Task ChangeOrderStatus(int purchaseOrderHeaderID)
         {
             var orderHeader = unitOfWork.PurchaseOrderHeader.Get(purchaseOrderHeaderID);
+            var customer = unitOfWork.Person.Get((int)orderHeader.PersonID);
+
             orderHeader.Status = 4; //Завершен 
             unitOfWork.PurchaseOrderHeader.Update(orderHeader);
             unitOfWork.Save();
+
+            await emailService.SendEmailAsync(orderHeader.PurchaseOrderID);
         }
     }
 }

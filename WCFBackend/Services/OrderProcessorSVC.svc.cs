@@ -15,12 +15,12 @@ namespace WCFBackend
 
         public void ProccesOrderAuthenticated(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails, string userId)
         {
-            orderProcessorService.ProccesOrderAuthenticated(cart, shippingDetails, userId);
+            orderProcessorService.ProccesOrderAuthenticatedAsync(cart, shippingDetails, userId);
         }
 
         public void ProcessOrder(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails)
         {
-            orderProcessorService.ProcessOrder(cart, shippingDetails);
+            orderProcessorService.ProcessOrderAsync(cart, shippingDetails);
         }
     }
 }
