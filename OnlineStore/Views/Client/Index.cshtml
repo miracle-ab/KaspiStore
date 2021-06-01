@@ -14,6 +14,7 @@
                 <th>Дата заказа</th>
                 <th>Дата отправки</th>
                 <th class="text-right">Статус</th>
+                <th class="text-right">Общее кол-во</th>
                 <th class="text-right">Промежуточная сумма</th>
                 <th class="text-right">Итого</th>
             </tr>
@@ -21,21 +22,22 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td class="text-left">@item.OrderDate</td>
-                    @if (item.ShipDate != null)
-                    {
-                        <td class="text-left">@item.ShipDate</td>
-                    }
-                    else
-                    {
-                        <td class="text-left">00.00.0000 00:00:00</td>
-                    }
+            <tr>
+                <td class="text-left">@item.OrderDate</td>
+                @if (item.ShipDate != null)
+                {
+                    <td class="text-left">@item.ShipDate</td>
+                }
+                else
+                {
+                    <td class="text-left">00.00.0000 00:00:00</td>
+                }
 
-                    <td class="text-right"> @item.Status</td>
-                    <td class="text-right">@item.SubTotal</td>
-                    <td class="text-right">@item.TotalDue</td>
-                </tr>
+                <td class="text-right"> @item.Status</td>
+                <td class="text-right"> @item.Quantity</td>
+                <td class="text-right">@item.SubTotal</td>
+                <td class="text-right">@item.TotalDue</td>
+            </tr>
             }
         </tbody>
 

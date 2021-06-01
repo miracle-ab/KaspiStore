@@ -49,6 +49,10 @@ namespace OnlineStore.Infrastructure.Data
 
         private BusinessEntityRepository businessEntityRep;
 
+        private SalesTaxRateRepository salesTaxRateRep;
+
+        private ShipMethodRepository shipMethodRep;
+
         public IRepository<Product> Products
         {
             get
@@ -228,6 +232,27 @@ namespace OnlineStore.Infrastructure.Data
                 return businessEntityRep;
             }
         }
+
+        public SalesTaxRateRepository SalesTaxRate
+        {
+            get
+            {
+                if (salesTaxRateRep == null)
+                    salesTaxRateRep = new SalesTaxRateRepository(db);
+                return salesTaxRateRep;
+            }
+        }
+
+        public ShipMethodRepository ShipMethod
+        {
+            get
+            {
+                if (shipMethodRep == null)
+                    shipMethodRep = new ShipMethodRepository(db);
+                return shipMethodRep;
+            }
+        }
+
 
         public void Save()
         {

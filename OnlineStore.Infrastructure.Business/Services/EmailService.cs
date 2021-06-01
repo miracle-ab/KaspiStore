@@ -65,6 +65,10 @@ namespace OnlineStore.Infrastructure.Business.Services
                 await client.DisconnectAsync(true);
             }
         }
-        
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
     }
 }

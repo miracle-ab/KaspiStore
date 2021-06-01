@@ -18,5 +18,6 @@ namespace OnlineStore.Infrastructure.Business.DTO
         public decimal Freight { get; set; }
         public decimal TotalDue { get; set; }
         public string SalesPerson { get; set; }
+        public int Quantity { get; set; }
     }
 }

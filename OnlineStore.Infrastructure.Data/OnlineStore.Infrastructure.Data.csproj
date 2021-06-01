@@ -73,10 +73,12 @@
     <Compile Include="Repositories\Production\ProductSubCategory.cs" />
     <Compile Include="Repositories\Purchasing\PurchaseOrderDetailRepository.cs" />
     <Compile Include="Repositories\Purchasing\PurchaseOrderHeaderRepository.cs" />
+    <Compile Include="Repositories\Purchasing\ShipMethodRepository.cs" />
     <Compile Include="Repositories\Sales\CustomerRepository.cs" />
     <Compile Include="Repositories\Sales\SalesOrderDetailRepository.cs" />
     <Compile Include="Repositories\Sales\SalesOrderHeaderRepository.cs" />
     <Compile Include="Repositories\Sales\SalesPersonRepository.cs" />
+    <Compile Include="Repositories\Sales\SalesTaxRateRepository.cs" />
     <Compile Include="Repositories\Sales\SalesTerritoryRepository.cs" />
     <Compile Include="Repositories\Sales\ShoppingCartItemRepository.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />

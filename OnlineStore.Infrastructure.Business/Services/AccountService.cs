@@ -77,23 +77,27 @@ namespace OnlineStore.Infrastructure.Business.Services
             var person = unitOfWork.Person.GetList(i => i.UserID == clientId).FirstOrDefault();
 
             var orderHeaders = from ph in unitOfWork.PurchaseOrderHeader.GetList()
-                               where ph.PersonID == person.BusinessEntityID && ph.Status == 2
+                               where ph.PersonID == person.BusinessEntityID
                                select new OrderHeaderDTO
                                {
                                    PurchaseOrderID = ph.PurchaseOrderID,
-                                   Status = Status.Pending,
+                                   Status = (Status)ph.Status,
                                    OrderDate = ph.OrderDate,
                                    ShipDate = ph.ShipDate,
                                    SubTotal = ph.SubTotal,
                                    TaxAmt = ph.TaxAmt,
                                    Freight = ph.Freight,
-                                   TotalDue = ph.TotalDue
+                                   TotalDue = ph.TotalDue,
+                                   Quantity = ph.PurchaseOrderDetails.Where(t => t.PurchaseOrderID == ph.PurchaseOrderID).Sum(i => i.OrderQty)
                                };
 
             return orderHeaders;
         }
 
-
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
 
     }
 }

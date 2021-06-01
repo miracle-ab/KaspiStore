@@ -23,45 +23,9 @@ namespace OnlineStore.Infrastructure.Business.Services
 
         public async Task ProcessOrderAsync(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails)
         {
-            var employeeID = GetSalesPerson(shippingDetails.Country.ToString());
-
             var customer = CreateCurrentCustomer(shippingDetails);
 
-            var subTotal = CartTotalValue(cart);
-            var taxAmt = (CartTotalValue(cart) * 8) / 100;
-            var freight = (CartTotalValue(cart) * 25) / 1000;
-
-            var orderHeader = new PurchaseOrderHeader() 
-            {
-                RevisionNumber = 1,
-                Status = 2,
-                EmployeeID = employeeID,
-                ShipMethodID = 1,
-                OrderDate = DateTime.Now,
-                SubTotal = subTotal,
-                TaxAmt = taxAmt,
-                Freight = freight,
-                TotalDue = subTotal + taxAmt + freight,
-                ModifiedDate = DateTime.Now
-            };
-
-            foreach(var item in cart)
-            {
-                var orderDetail = new PurchaseOrderDetail()
-                {
-                    DueDate = DateTime.Now.AddDays(5),
-                    OrderQty = (short)item.Quantity,
-                    ProductID = item.Product.ProductID,
-                    UnitPrice = item.Product.Price,
-                    LineTotal = item.Product.Price * item.Quantity,
-                    ReceivedQty = item.Quantity,
-                    RejectedQty = 0,
-                    StockedQty = item.Quantity,
-                    ModifiedDate = DateTime.Now
-                };
-
-                orderHeader.PurchaseOrderDetails.Add(orderDetail);
-            }
+            var orderHeader = ProcessOrderHeader(cart, shippingDetails);
 
             customer.PurchaseOrderHeaders.Add(orderHeader);
             unitOfWork.Save();
@@ -74,8 +38,6 @@ namespace OnlineStore.Infrastructure.Business.Services
             var person = unitOfWork.Person.GetList(i => i.UserID == userId).FirstOrDefault();
 
             var busEntity = unitOfWork.BusinessEntity.Get(person.BusinessEntityID);
-
-            var employeeID = GetSalesPerson(shippingDetails.Country.ToString());
 
             var personPhone = new PersonPhone()
             {
@@ -94,9 +56,21 @@ namespace OnlineStore.Infrastructure.Business.Services
             person.EmailAddresses.Add(emailAddress);
             person.PersonPhones.Add(personPhone);
 
+            var orderHeader = ProcessOrderHeader(cart, shippingDetails);
+
+            busEntity.PurchaseOrderHeaders.Add(orderHeader);
+            unitOfWork.Save();
+
+            await emailService.SendEmailAsync(orderHeader.PurchaseOrderID);
+        }
+        
+        private PurchaseOrderHeader ProcessOrderHeader(IEnumerable<CartLineDTO> cart, ShippingDetailsDTO shippingDetails)
+        {
+            var employeeID = GetSalesPerson(shippingDetails.Country.ToString());
+
             var subTotal = CartTotalValue(cart);
-            var taxAmt = (CartTotalValue(cart) * 8) / 100;
-            var freight = (CartTotalValue(cart) * 25) / 1000;
+            var taxAmt = (CartTotalValue(cart) * GetTaxRate(shippingDetails.Country.ToString())) / 100;
+            var freight = (CartTotalValue(cart) * ShipBaseRate()) / 1000;
 
             var orderHeader = new PurchaseOrderHeader()
             {
@@ -105,6 +79,7 @@ namespace OnlineStore.Infrastructure.Business.Services
                 EmployeeID = employeeID,
                 ShipMethodID = 1,
                 OrderDate = DateTime.Now,
+                ShipDate = DateTime.Now.AddDays(7),
                 SubTotal = subTotal,
                 TaxAmt = taxAmt,
                 Freight = freight,
@@ -130,10 +105,7 @@ namespace OnlineStore.Infrastructure.Business.Services
                 orderHeader.PurchaseOrderDetails.Add(orderDetail);
             }
 
-            busEntity.PurchaseOrderHeaders.Add(orderHeader);
-            unitOfWork.Save();
-
-            await emailService.SendEmailAsync(orderHeader.PurchaseOrderID);
+            return orderHeader;
         }
 
         public int GetSalesPerson(string country)
@@ -217,9 +189,30 @@ namespace OnlineStore.Infrastructure.Business.Services
             return busEntity;
         }
 
-        public decimal CartTotalValue(IEnumerable<CartLineDTO> lineCollection)
+        private decimal CartTotalValue(IEnumerable<CartLineDTO> lineCollection)
         {
             return lineCollection.Sum(l => l.Product.Price * l.Quantity);
+        }
+
+        private decimal GetTaxRate(string country)
+        {
+            var taxRate = (from saltax in unitOfWork.SalesTaxRate.GetList()
+                          join salprov in unitOfWork.StateProvince.GetList() on saltax.StateProvinceID equals salprov.StateProvinceID
+                          where salprov.CountryRegionCode == country
+                          select saltax.TaxRate
+                ).FirstOrDefault();
+            return taxRate;
+        }
+
+        private decimal ShipBaseRate()
+        {
+            var shipBase = unitOfWork.ShipMethod.Get(1).ShipBase;
+            return shipBase;
+        }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace OnlineStore.Infrastructure.Business.Services
                                select new OrderHeaderDTO
                                {
                                    PurchaseOrderID = ph.PurchaseOrderID,
-                                   Status = Status.Pending,
+                                   Status = (Status)ph.Status,
                                    OrderDate = ph.OrderDate,
                                    ShipDate = ph.ShipDate,
                                    SubTotal = ph.SubTotal,
@@ -54,7 +54,7 @@ namespace OnlineStore.Infrastructure.Business.Services
                                select new OrderHeaderDTO
                                {
                                    PurchaseOrderID = ph.PurchaseOrderID,
-                                   Status = Status.Pending,
+                                   Status = (Status)ph.Status,
                                    OrderDate = ph.OrderDate,
                                    ShipDate = ph.ShipDate,
                                    SubTotal = ph.SubTotal,
@@ -152,7 +152,7 @@ namespace OnlineStore.Infrastructure.Business.Services
 
             MsmqServ.SendMessage(xdoc, purchaseOrderHeaderID);
 
-            orderHeader.Status = 3; //Отправлен 
+            orderHeader.Status = 3; //Sent 
             unitOfWork.PurchaseOrderHeader.Update(orderHeader);
             unitOfWork.Save();
 
@@ -164,7 +164,7 @@ namespace OnlineStore.Infrastructure.Business.Services
             var orderHeader = unitOfWork.PurchaseOrderHeader.Get(purchaseOrderHeaderID);
             var customer = unitOfWork.Person.Get((int)orderHeader.PersonID);
 
-            orderHeader.Status = 4; //Завершен 
+            orderHeader.Status = 4; //Closed 
             unitOfWork.PurchaseOrderHeader.Update(orderHeader);
             unitOfWork.Save();
 

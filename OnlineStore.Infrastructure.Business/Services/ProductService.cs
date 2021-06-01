@@ -166,7 +166,6 @@ namespace OnlineStore.Infrastructure.Business.Services
 
             return new PhotoDTO { LargePhoto = img.LargePhoto };
         }
-
         public void Dispose()
         {
             unitOfWork.Dispose();
