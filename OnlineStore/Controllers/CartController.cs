@@ -42,6 +42,16 @@ namespace OnlineStore.Controllers
             }
             return RedirectToAction("Index", new { returnUrl });
         }
+        public RedirectToRouteResult SubstractItemCart(CartSVCClient cart, int productId, string returnUrl)
+        {
+            var productDTO = productService.GetProduct(productId);
+
+            if (productDTO != null)
+            {
+                cart.SubstractQtyItem(productDTO, 1);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
 
         public RedirectToRouteResult RemoveFromCart(CartSVCClient cart, int productId, string returnUrl)
         {

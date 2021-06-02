@@ -29,6 +29,17 @@ namespace OnlineStore.Infrastructure.Business.Services
             }
         }
 
+        public void SubstractQtyItem(ProductDTO productDto, int quantity)
+        {
+            CartLineDTO line = lineCollection
+                   .Where(p => p.Product.ProductID == productDto.ProductID)
+                   .FirstOrDefault();
+            if (line == null)
+            {
+                line.Quantity -= quantity;
+            }
+        }
+
         public void RemoveLine(ProductDTO productDto)
         {
             lineCollection.RemoveAll(l => l.Product.ProductID == productDto.ProductID);

@@ -19,33 +19,65 @@
                 <th class="text-right">Цена</th>
                 <th class="text-right">Общая цена</th>
                 <th class="text-right"></th>
+                <th class="text-right"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var line in Model.Cart.Lines())
             {
-                <tr>
-                    <td class="text-center">@line.Quantity</td>
-                    <td class="text-center">
-                        @if (line.Product.Photo != null)
-                        {
-                            <img border=3 height=50 width=100 src="/Products/Image?filename=@line.Product.Photo" />
-                        }
-                    </td>
-                    <td class="text-left">@line.Product.Name</td>
-                    <td class="text-right">@line.Product.Price$</td>
-                    <td class="text-right">
-                        @(line.Quantity * line.Product.Price)$
-                    </td>
-                    <td>
-                        @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { @class = "text-right" }))
-                        {
-                            @Html.Hidden("productId", line.Product.ProductID)
-                            @Html.HiddenFor(x => x.ReturnUrl)
-                            <input class="btn btn-sm btn-outline-warning" type="submit" value="Удалить" />
-                        }
-                    </td>
-                </tr>
+            <tr>
+                <td class="text-center d-flex flex-row justify-content-center align-items-center">
+                    @using (Html.BeginForm("SubstractItemCart", "Cart"))
+                    {
+                        @Html.Hidden("productId", line.Product.ProductID)
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                        <input type="submit" class="product_cart_btn" value="<" style="font-weight: 500; color: #000; font-size: 19px;" />
+                    }
+
+                    @line.Quantity
+
+                    @using (Html.BeginForm("AddToCart", "Cart"))
+                    {
+                        @Html.Hidden("productId", line.Product.ProductID)
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                        <input type="submit" class="product_cart_btn" value=">" style="font-weight: 500; color: #000; font-size: 19px;" />
+                    }
+
+                </td>
+                <td class="text-center">
+                    @if (line.Product.Photo != null)
+                    {
+                        <img border=3 height=65 width=100 src="/Products/Image?filename=@line.Product.Photo" />
+                    }
+                </td>
+                <td class="text-left">@line.Product.Name</td>
+                <td class="text-right">@line.Product.Price$</td>
+                <td class="text-right">
+                    @(line.Quantity * line.Product.Price)$
+                </td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { @class = "text-right" }))
+                    {
+                        @Html.Hidden("productId", line.Product.ProductID)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input class="btn btn-sm btn-outline-warning" type="submit" value="Удалить" />
+                    }
+                </td>
+                @if (line.Quantity >= line.Product.Quantity || line.Quantity <= 0)
+                {
+                    <td class="text-left">
+                    @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post, new { @class = "text-right" }))
+                    {
+                        @Html.Hidden("productId", line.Product.ProductID)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input class="btn btn-sm btn-outline-warning auto-delete" type="submit" value="" />
+                    }
+                     </td>
+                } else
+                {
+                    <td></td>
+                }
+            </tr>
             }
         </tbody>
         <tfoot>

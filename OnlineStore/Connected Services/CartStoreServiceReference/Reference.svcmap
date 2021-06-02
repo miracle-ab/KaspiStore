@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="37bc2e02-8d2a-44b3-bae1-308f7ca010ad" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5325643d-e252-446f-a0cc-469185b38cda" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:62335/Services/CartSVC.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CartSVC.xsd" MetadataType="Schema" ID="f5677a44-85a1-46da-862d-e7524da15486" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?xsd=xsd0" />
-    <MetadataFile FileName="CartSVC1.xsd" MetadataType="Schema" ID="e5ff34ce-ea1d-4423-bc8a-e28b726856df" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?xsd=xsd1" />
-    <MetadataFile FileName="CartSVC.wsdl" MetadataType="Wsdl" ID="ac6d0054-b931-4875-aea9-babcf7f51661" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?wsdl" />
-    <MetadataFile FileName="CartSVC.disco" MetadataType="Disco" ID="5608afa7-8353-471b-a5a9-d481092ebe49" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?disco" />
-    <MetadataFile FileName="CartSVC2.xsd" MetadataType="Schema" ID="1c99d146-04c0-4728-ae48-5a21779af36e" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?xsd=xsd2" />
+    <MetadataFile FileName="CartSVC.xsd" MetadataType="Schema" ID="e0bb1091-9590-4375-9992-253d91944a85" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?xsd=xsd0" />
+    <MetadataFile FileName="CartSVC1.xsd" MetadataType="Schema" ID="ef8be16d-5b2d-4b95-9231-866d799b99af" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?xsd=xsd1" />
+    <MetadataFile FileName="CartSVC.wsdl" MetadataType="Wsdl" ID="069b780d-8a31-4849-8ff6-6e5dc2e33eee" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?wsdl" />
+    <MetadataFile FileName="CartSVC.disco" MetadataType="Disco" ID="0fd5013d-3742-4153-81a3-e3507b98ae6e" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?disco" />
+    <MetadataFile FileName="CartSVC2.xsd" MetadataType="Schema" ID="097126c6-faee-499f-a187-1831a5df2dca" SourceId="1" SourceUrl="http://localhost:62335/Services/CartSVC.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

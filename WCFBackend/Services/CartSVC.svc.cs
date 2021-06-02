@@ -56,5 +56,17 @@ namespace WCFBackend
         {
             return lineCollection; 
         }
+
+        public void SubstractQtyItem(ProductDTO productDto, int quantity)
+        {
+            CartLineDTO line = lineCollection
+               .Where(p => p.Product.ProductID == productDto.ProductID)
+               .FirstOrDefault();
+
+            if (line != null)
+            {
+                line.Quantity -= quantity;
+            }
+        }
     }
 }

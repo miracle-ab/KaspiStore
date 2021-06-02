@@ -10,7 +10,11 @@ namespace WCFBackend
         
         [OperationContract]
         void AddItem(ProductDTO productDto, int quantity);
-        
+
+        [OperationContract]
+        void SubstractQtyItem(ProductDTO productDto, int quantity);
+
+
         [OperationContract]
         void RemoveLine(ProductDTO productDto);
         

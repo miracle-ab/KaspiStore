@@ -129,6 +129,14 @@ namespace OnlineStore.Infrastructure.Business.Services
         {
             var product = unitOfWork.Products.Get(id);
 
+            var productInventory = unitOfWork.ProductInventory.GetList().GroupBy(p => p.ProductID)
+                .Select(g => new
+                {
+                    ProductID = g.Key,
+                    Quantity = g.Sum(p => p.Quantity)
+                });
+
+
             if (product == null)
                 throw new ValidationException("Product doesn't find", "");
 
@@ -157,7 +165,8 @@ namespace OnlineStore.Infrastructure.Business.Services
                 Size = product.Size,
                 SizeUnitMeasureCode = product.SizeUnitMeasureCode,
                 Description = description,
-                Photo = photoFileName
+                Photo = photoFileName,
+                Quantity = product.ProductInventories.Where(i => i.ProductID == product.ProductID).Sum(p => p.Quantity)
             };
         }
         public PhotoDTO Image(string filename)
