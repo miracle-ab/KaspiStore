@@ -1,2 +1,0 @@
-# KaspiStore
-Password: Miras123@
