@@ -1,2 +1,2 @@
 # KaspiStore
-Manager Password: Miras123@
+Password: Miras123@
