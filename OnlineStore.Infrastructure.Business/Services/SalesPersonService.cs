@@ -139,12 +139,6 @@ namespace OnlineStore.Infrastructure.Business.Services
 
                 xorderDetail.Add(xname, xquantity, xprice);
                 xorderHeader.Add(xorderDetail);
-
-
-                //Change quantity product after accept by salesPerson
-                //var productItem = unitOfWork.ProductInventory.Get(orderDetail.ProductID);
-                //productItem.Quantity -= orderDetail.OrderQty;
-                //unitOfWork.ProductInventory.Update(productItem);
             }
 
             xdoc.Add(xorderHeader);
